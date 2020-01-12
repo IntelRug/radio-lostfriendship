@@ -1,0 +1,12 @@
+#EXTM3U
+#PLAYLIST:Radio LostFriendship
+#EXTINF:-1,Radio LostFriendship - 320 KBIT/S MP3
+https://radio.lostfriendship.net/320
+
+#PLAYLIST:Radio LostFriendship
+#EXTINF:-1,Radio LostFriendship - 128 KBIT/S MP3
+https://radio.lostfriendship.net/128
+
+#PLAYLIST:Radio LostFriendship
+#EXTINF:-1,Radio LostFriendship - 64 KBIT/S OGG
+https://radio.lostfriendship.net/64
