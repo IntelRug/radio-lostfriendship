@@ -11,10 +11,10 @@
           Radio LostFriendship
         </h1>
         <a
-          href="/playlist/RadioLostFriendship.pls"
+          href="/playlist/RadioLostFriendship.m3u"
           class="player__playlist"
         >
-          PLS
+          M3U
         </a>
         <div class="player__meta">
           <div
