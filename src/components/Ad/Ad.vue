@@ -6,7 +6,7 @@
       <a
         href="https://discord.gg/bHyMcva"
         class="ad__link"
-      >https://discord.gg/bHyMcva</a>
+      >https://discord.gg/tFEEYzm</a>
     </p>
   </div>
   <!-- end .ad-->
