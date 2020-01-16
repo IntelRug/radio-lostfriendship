@@ -7,15 +7,17 @@
           ref="audio"
           hidden
         />
-        <h1 class="player__title">
-          Radio LostFriendship
-        </h1>
-        <a
-          href="/playlist/RadioLostFriendship.m3u"
-          class="player__playlist"
-        >
-          M3U
-        </a>
+        <div class="player__header">
+          <h1 class="player__title">
+            Radio LostFriendship
+          </h1>
+          <a
+            href="/playlist/RadioLostFriendship.m3u"
+            class="player__playlist"
+          >
+            M3U
+          </a>
+        </div>
         <div class="player__meta">
           <div
             class="player__meta-title"
@@ -42,21 +44,23 @@
           </div>
         </div>
         <div class="player__controls">
-          <div class="player__play-button">
+          <button
+            class="player__play-button"
+            @click="play"
+          >
             <svg
+              v-show="!isPlaying"
               class="player__icon"
-              @click="play"
             >
-              <use
-                v-show="!isPlaying"
-                xlink:href="/img/icon.svg#icon_play"
-              />
-              <use
-                v-show="isPlaying"
-                xlink:href="/img/icon.svg#icon_pause"
-              />
+              <use xlink:href="/img/icon.svg#icon_play" />
             </svg>
-          </div>
+            <svg
+              v-show="isPlaying"
+              class="player__icon"
+            >
+              <use xlink:href="/img/icon.svg#icon_pause" />
+            </svg>
+          </button>
           <div
             ref="selection"
             class="player__stream-selection"

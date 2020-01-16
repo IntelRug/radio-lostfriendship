@@ -7,7 +7,7 @@ module.exports = {
       stylus: {
         import: [
           path.resolve(__dirname, 'src/assets/styles/normalize.styl'),
-          path.resolve(__dirname, 'src/assets/styles/typography.styl'),
+          path.resolve(__dirname, 'src/assets/styles/mixins.styl'),
         ],
       },
     },
