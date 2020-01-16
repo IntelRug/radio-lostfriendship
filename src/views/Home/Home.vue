@@ -23,6 +23,7 @@
           />
           <div
             class="player__meta-artist"
+            :class="{'player__meta-artist_live': type === 'livestream'}"
             v-html="artist"
           />
         </div>
@@ -126,7 +127,7 @@ import Ad from '@/components/Ad/Ad.vue';
       const secs = parseFloat(String(time));
       const hours: number = Math.floor(secs / (60 * 60));
       let minutes: number | string = Math.floor((secs - (hours * 60 * 60)) / 60);
-      let seconds: number | string = Math.floor(secs - (minutes * 60));
+      let seconds: number | string = Math.floor(secs - (minutes * 60) - (hours * 60 * 60));
 
       if (seconds < 10) { seconds = `0${seconds}`; }
       if (hours && minutes < 10) { minutes = `0${minutes}`; }
@@ -145,19 +146,19 @@ export default class Home extends Vue {
       id: 1,
       name: '320 KBIT/S MP3',
       url: 'https://radio.lostfriendship.net/320',
-      offset: 35,
+      offset: 10,
     },
     {
       id: 2,
       name: '128 KBIT/S MP3',
       url: 'https://radio.lostfriendship.net/128',
-      offset: 37,
+      offset: 10,
     },
     {
       id: 3,
       name: '64 KBIT/S OGG',
       url: 'https://radio.lostfriendship.net/64',
-      offset: 40,
+      offset: 5,
     },
   ];
   private selectedStreamId: number = 1;
@@ -206,8 +207,18 @@ export default class Home extends Vue {
     return 'current';
   }
 
+  get type() {
+    if (this.liveInfo) {
+      return this.liveInfo[this.track].type;
+    }
+    return 'track';
+  }
+
   get title() {
     if (this.liveInfo) {
+      if (this.type === 'livestream') {
+        return this.liveInfo[this.track].name.split('-')[0];
+      }
       return this.liveInfo[this.track].metadata.track_title || 'Unknown title';
     }
     return 'Unknown title';
@@ -215,6 +226,9 @@ export default class Home extends Vue {
 
   get artist() {
     if (this.liveInfo) {
+      if (this.type === 'livestream') {
+        return 'LiveStream';
+      }
       return this.liveInfo[this.track].metadata.artist_name || 'Unknown artist';
     }
     return 'Unknown artist';
@@ -251,7 +265,7 @@ export default class Home extends Vue {
 
   created() {
     this.getMetadata();
-    // this.getLiveInfoInterval = setInterval(this.getMetadata, 20000);
+    this.getLiveInfoInterval = setInterval(this.getMetadata, 10000);
     this.nowInterval = setInterval(() => { this.now = Math.floor(Date.now() / 1000); }, 500);
   }
 
@@ -289,9 +303,15 @@ export default class Home extends Vue {
         this.liveInfo.previous.endsAt = moment.tz(this.liveInfo.previous.ends, 'YYYY-MM-DD HH-mm-ss', zone).unix();
         this.liveInfo.current.endsAt = moment.tz(this.liveInfo.current.ends, 'YYYY-MM-DD HH-mm-ss', zone).unix();
         this.liveInfo.next.endsAt = moment.tz(this.liveInfo.next.ends, 'YYYY-MM-DD HH-mm-ss', zone).unix();
-        this.liveInfo.previous.metadata.seconds = moment.duration(this.liveInfo.previous.metadata.length).asSeconds();
-        this.liveInfo.current.metadata.seconds = moment.duration(this.liveInfo.current.metadata.length).asSeconds();
-        this.liveInfo.next.metadata.seconds = moment.duration(this.liveInfo.next.metadata.length).asSeconds();
+        if (this.liveInfo.previous.type === 'track') {
+          this.liveInfo.previous.metadata.seconds = moment.duration(this.liveInfo.previous.metadata.length).asSeconds();
+        }
+        if (this.liveInfo.current.type === 'track') {
+          this.liveInfo.current.metadata.seconds = moment.duration(this.liveInfo.current.metadata.length).asSeconds();
+        }
+        if (this.liveInfo.next.type === 'track') {
+          this.liveInfo.next.metadata.seconds = moment.duration(this.liveInfo.next.metadata.length).asSeconds();
+        }
       }
       // eslint-disable-next-line no-empty
     } catch (e) { }
