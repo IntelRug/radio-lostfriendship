@@ -4,7 +4,7 @@
     <p class="ad__text">
       Join our Discord:&nbsp;
       <a
-        href="https://discord.gg/bHyMcva"
+        href="https://discord.gg/tFEEYzm"
         class="ad__link"
       >https://discord.gg/tFEEYzm</a>
     </p>
