@@ -110,6 +110,9 @@
     <div class="content__ad">
       <Ad />
     </div>
+    <div class="content__chat">
+      <iframe frameborder="0" marginheight="0" marginwidth="0" width="100%" height="400" style="width:100%;height:400px;border:none;" src="https://lfradio.chatovod.ru/"></iframe>
+    </div>
   </div>
 </template>
 
