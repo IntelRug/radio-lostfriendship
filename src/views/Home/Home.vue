@@ -12,10 +12,7 @@
             Radio LostFriendship
           </h1>
           <span class="player__listeners">
-            <svg
-              v-show="!isPlaying"
-              class="player__icon"
-            >
+            <svg class="player__icon">
               <use xlink:href="/img/icon.svg#icon_person_outline" />
             </svg>
             {{ listeners }}
