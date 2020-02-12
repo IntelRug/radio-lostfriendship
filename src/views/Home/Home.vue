@@ -111,7 +111,15 @@
       <Ad />
     </div>
     <div class="content__chat">
-      <iframe frameborder="0" marginheight="0" marginwidth="0" width="100%" height="400" style="width:100%;height:400px;border:none;" src="https://lfradio.chatovod.ru/"></iframe>
+      <iframe
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+        width="100%"
+        height="400"
+        style="width:100%;height:400px;border:none;"
+        src="https://lfradio.chatovod.ru/"
+      />
     </div>
   </div>
 </template>
@@ -300,7 +308,7 @@ export default class Home extends Vue {
 
   async getMetadata() {
     try {
-      const response = await axios.get('https://airtime.lostfriendship.net/api/live-info');
+      const response = await axios.get('https://radio.lostfriendship.net/live-info');
       this.liveInfo = response.data;
       if (this.liveInfo) {
         const zone = 'Europe/London';
