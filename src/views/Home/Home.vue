@@ -11,6 +11,15 @@
           <h1 class="player__title">
             Radio LostFriendship
           </h1>
+          <span class="player__listeners">
+            <svg
+              v-show="!isPlaying"
+              class="player__icon"
+            >
+              <use xlink:href="/img/icon.svg#icon_person_outline" />
+            </svg>
+            {{ listeners }}
+          </span>
           <a
             href="/playlist/RadioLostFriendship.m3u"
             class="player__playlist"
@@ -134,6 +143,7 @@ import Cookies from 'js-cookie';
 import ILiveInfo from '@/types/ILiveInfo';
 import SeekBar from '@/components/SeekBar/SeekBar.vue';
 import Ad from '@/components/Ad/Ad.vue';
+import IIcecastStats from '@/types/IcecastStats';
 
 @Component({
   components: { Ad, SeekBar },
@@ -152,6 +162,7 @@ import Ad from '@/components/Ad/Ad.vue';
 })
 export default class Home extends Vue {
   private liveInfo: ILiveInfo | null = null;
+  private icecastStats: IIcecastStats | null = null;
   private now: number = 0;
   private getLiveInfoInterval!: number;
   private nowInterval!: number;
@@ -278,6 +289,13 @@ export default class Home extends Vue {
     return this.streams.find(s => s.id === this.selectedStreamId)!;
   }
 
+  get listeners() {
+    if (this.icecastStats && Array.isArray(this.icecastStats.source)) {
+      return this.icecastStats.source.reduce((acc, { listeners }) => (acc + (listeners || 0)), 0);
+    }
+    return 0;
+  }
+
   created() {
     this.getMetadata();
     this.getLiveInfoInterval = setInterval(this.getMetadata, 10000);
@@ -309,7 +327,9 @@ export default class Home extends Vue {
   async getMetadata() {
     try {
       const response = await axios.get('https://radio.lostfriendship.net/live-info');
+      const response2 = await axios.get('https://radio.lostfriendship.net/icecast-stats');
       this.liveInfo = response.data;
+      this.icecastStats = response2.data ? response2.data.icestats : null;
       if (this.liveInfo) {
         const zone = 'Europe/London';
         this.liveInfo.previous.startsAt = moment.tz(this.liveInfo.previous.starts, 'YYYY-MM-DD HH-mm-ss', zone).unix();
