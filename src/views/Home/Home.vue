@@ -35,7 +35,10 @@
             v-html="artist"
           />
         </div>
-        <div class="player__progress">
+        <div
+          v-if="type !== 'livestream'"
+          class="player__progress"
+        >
           <div class="player__progress-time">
             {{ progress | toHHMMSS }}
           </div>
@@ -239,8 +242,9 @@ export default class Home extends Vue {
 
   get title() {
     if (this.liveInfo) {
-      if (this.type === 'livestream') {
-        return this.liveInfo[this.track].name.split('-')[0];
+      if (this.type === 'livestream' && this.icecastStats && this.icecastStats.source && this.icecastStats.source) {
+        return this.icecastStats.source![0].title.split('-')[1];
+        // return this.liveInfo[this.track].name.split('-')[0];
       }
       return this.liveInfo[this.track].metadata.track_title || 'Unknown title';
     }
@@ -249,8 +253,9 @@ export default class Home extends Vue {
 
   get artist() {
     if (this.liveInfo) {
-      if (this.type === 'livestream') {
-        return 'LiveStream';
+      if (this.type === 'livestream' && this.icecastStats && this.icecastStats.source && this.icecastStats.source) {
+        return this.icecastStats.source![0].title.split('-')[0];
+        // return 'LiveStream';
       }
       return this.liveInfo[this.track].metadata.artist_name || 'Unknown artist';
     }
