@@ -9,7 +9,7 @@
         />
         <div class="player__header">
           <h1 class="player__title">
-            Radio LostFriendship
+            Lost Friendship Radio
           </h1>
           <span class="player__listeners">
             <svg class="player__icon">
@@ -31,9 +31,14 @@
           />
           <div
             class="player__meta-artist"
-            :class="{'player__meta-artist_live': type === 'livestream'}"
             v-html="artist"
           />
+          <!--          <div-->
+          <!--            v-if="type === 'livestream'"-->
+          <!--            class="player__meta-artist player__meta-artist_live"-->
+          <!--          >-->
+          <!--            {{ liveInfo[track].name.split('-')[0] }}-->
+          <!--          </div>-->
         </div>
         <div
           v-if="type !== 'livestream'"
