@@ -50,7 +50,7 @@
 		font-size 16px
 		line-height 30px
 
-		& ^[0]__icon
+		& .icon
 			width 24px
 			height 24px
 			fill #749ce5
@@ -134,22 +134,23 @@
 
 	&__play-button
 		flex-shrink 0
-		width 40px
-		height 40px
 		cursor pointer
 		background transparent
 		border none
 		outline none
 
-		& ^[0]__icon
+		&:focus
+			outline none
+
+		& .icon
+			display block
+			width 40px
+			height 40px
 			transition .1s ease-in
 			fill #749ce5
 
 			&:hover
 				fill #88b0f9
-
-		&:focus
-			outline none
 
 
 
@@ -235,12 +236,11 @@
 		+above(481px)
 			display flex
 
-
-
-	&__volume-icon
-		flex-shrink 0
-		width 32px
-		height 32px
+		& .icon
+			flex-shrink 0
+			width 32px
+			height 32px
+			fill grey
 
 
 

@@ -39,7 +39,11 @@
     "gh-pages": "^2.2.0",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
+    "svg-sprite-loader": "^4.2.1",
+    "svgo": "^1.1.0",
+    "svgo-loader": "^2.1.0",
     "typescript": "~3.5.3",
+    "vue-cli-plugin-svg-sprite": "^1.0.0",
     "vue-cli-plugin-vuetify": "^2.0.2",
     "vue-template-compiler": "^2.6.11"
   }

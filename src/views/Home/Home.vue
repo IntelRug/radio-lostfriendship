@@ -12,9 +12,7 @@
             Lost Friendship Radio
           </h1>
           <span class="player__listeners">
-            <svg class="player__icon">
-              <use xlink:href="/img/icon.svg#icon_person_outline" />
-            </svg>
+            <icon name="person_outline" />
             {{ listeners }}
           </span>
           <a
@@ -62,18 +60,7 @@
             class="player__play-button"
             @click="play"
           >
-            <svg
-              v-show="!isPlaying"
-              class="player__icon"
-            >
-              <use xlink:href="/img/icon.svg#icon_play" />
-            </svg>
-            <svg
-              v-show="isPlaying"
-              class="player__icon"
-            >
-              <use xlink:href="/img/icon.svg#icon_pause" />
-            </svg>
+            <icon :name="(isPlaying ? 'pause' : 'play') + '_circle_filled'" />
           </button>
           <div
             ref="selection"
@@ -100,22 +87,14 @@
             </ul>
           </div>
           <div class="player__volume">
-            <div class="player__volume-icon">
-              <svg class="player__icon">
-                <use xlink:href="/img/icon.svg#icon_volume_mute" />
-              </svg>
-            </div>
+            <icon name="volume_mute" />
             <div class="player__volume-slider">
               <SeekBar
                 :value="volume"
                 @update:value="setVolume"
               />
             </div>
-            <div class="player__volume-icon">
-              <svg class="player__icon">
-                <use xlink:href="/img/icon.svg#icon_volume_up" />
-              </svg>
-            </div>
+            <icon name="volume_up" />
           </div>
         </div>
       </div>
@@ -123,17 +102,6 @@
     </div>
     <div class="content__ad">
       <Ad />
-    </div>
-    <div class="content__chat">
-      <iframe
-        frameborder="0"
-        marginheight="0"
-        marginwidth="0"
-        width="100%"
-        height="400"
-        style="width:100%;height:400px;border:none;"
-        src="https://lfradio.chatovod.ru/"
-      />
     </div>
   </div>
 </template>
@@ -149,9 +117,12 @@ import ILiveInfo from '@/types/ILiveInfo';
 import SeekBar from '@/components/SeekBar/SeekBar.vue';
 import Ad from '@/components/Ad/Ad.vue';
 import IIcecastStats from '@/types/IcecastStats';
+import Icon from '@/components/Icon/Icon.vue';
 
 @Component({
-  components: { Ad, SeekBar },
+  components: {
+    Icon, Ad, SeekBar,
+  },
   filters: {
     toHHMMSS(time: string | number) {
       const secs = parseFloat(String(time));
