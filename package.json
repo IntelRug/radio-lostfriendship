@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "deploy": "rm -rf dist && npm run build && node tasks/deploy.js"
+    "deploy": "rm -rf dist && npm run build && node tasks/deploy.js",
+    "make-block":"node make-block.js"
   },
   "dependencies": {
     "@material-ui/icons": "^4.5.1",
