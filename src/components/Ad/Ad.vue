@@ -1,22 +1,19 @@
-<template>
-  <!-- begin .ad-->
-  <div class="ad">
-    <p class="ad__text">
-      Join our Discord:&nbsp;
-      <a
-        href="https://discord.gg/tFEEYzm"
-        class="ad__link"
-      >https://discord.gg/tFEEYzm</a>
-    </p>
-  </div>
-  <!-- end .ad-->
+<template lang="pug">
+  include ../../tools/mixins
+  // begin .ad
+  +b.ad
+    +e('p').text
+      = 'Join our Discord: '
+      +e('a').link(:href='discordLink') {{ discordLink }}
+  // end .ad
 </template>
 
-<script>
+<script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component({})
 export default class Ad extends Vue {
+  private discordLink: string = 'https://discord.gg/tFEEYzm';
 }
 </script>
 

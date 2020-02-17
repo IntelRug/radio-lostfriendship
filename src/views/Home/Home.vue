@@ -1,119 +1,49 @@
-<template>
-  <!-- begin .player-->
-  <div class="content">
-    <div class="content__player">
-      <div class="player">
-        <audio
-          ref="audio"
-          hidden
-        />
-        <div class="player__header">
-          <h1 class="player__title">
-            Lost Friendship Radio
-          </h1>
-          <span class="player__listeners">
-            <icon name="person_outline" />
-            {{ listeners }}
-          </span>
-          <a
-            href="/playlist/RadioLostFriendship.m3u"
-            class="player__playlist"
-          >
-            M3U
-          </a>
-        </div>
-        <div class="player__meta">
-          <div
-            class="player__meta-title"
-            v-html="title"
-          />
-          <div
-            class="player__meta-artist"
-            v-html="artist"
-          />
-          <!--          <div-->
-          <!--            v-if="type === 'livestream'"-->
-          <!--            class="player__meta-artist player__meta-artist_live"-->
-          <!--          >-->
-          <!--            {{ liveInfo[track].name.split('-')[0] }}-->
-          <!--          </div>-->
-        </div>
-        <div
-          v-if="type !== 'livestream'"
-          class="player__progress"
-        >
-          <div class="player__progress-time">
-            {{ progress | toHHMMSS }}
-          </div>
-          <div class="player__progress-background">
-            <div
-              class="player__progress-color"
-              :style="{width: progressInPercents + '%'}"
-            />
-          </div>
-          <div class="player__progress-time">
-            {{ duration | toHHMMSS }}
-          </div>
-        </div>
-        <div class="player__controls">
-          <button
-            class="player__play-button"
-            @click="play"
-          >
-            <icon :name="(isPlaying ? 'pause' : 'play') + '_circle_filled'" />
-          </button>
-          <div
-            ref="selection"
-            class="player__stream-selection"
-          >
-            <button
-              class="player__dropdown-button"
-              @click="dropdown = !dropdown"
-            >
-              {{ source.name }}
-            </button>
-            <ul
-              class="player__dropdown"
-              :class="{'player__dropdown_active': dropdown}"
-            >
-              <li
-                v-for="(stream) of streams.filter(s => s.name !== source.name)"
-                :key="stream.id"
-                class="player__dropdown-item"
-                @click="selectStream(stream.id)"
-              >
-                {{ stream.name }}
-              </li>
-            </ul>
-          </div>
-          <div class="player__volume">
-            <icon name="volume_mute" />
-            <div class="player__volume-slider">
-              <SeekBar
-                :value="volume"
-                @update:value="setVolume"
-              />
-            </div>
-            <icon name="volume_up" />
-          </div>
-        </div>
-      </div>
-      <!-- end .player-->
-    </div>
-    <div class="content__chat">
-      <a
-        href="https://lfradio.chatovod.ru"
-        class="content__open-link"
-        target="_blank"
-      >
-        <icon name="open_in_new" />
-      </a>
-      <iframe src="https://lfradio.chatovod.ru/" />
-    </div>
-    <div class="content__ad">
-      <Ad />
-    </div>
-  </div>
+<template lang="pug">
+  include ../../tools/mixins
+  +b.content
+    +e.player
+      // begin .player
+      +b.player
+        audio(ref='audio', hidden)
+        +e.header
+          +e('h1').title
+            | Lost Friendship Radio
+          +e('span').listeners
+            icon(name='person_outline')
+            | {{ listeners }}
+          +e('a').playlist(href='/playlist/RadioLostFriendship.m3u')
+            | M3U
+        +e.meta
+          +e.meta-title(v-html='title')
+          +e.meta-artist(v-html='artist')
+          +e.progress(v-if="type !== 'livestream'")
+            +e.progress-time
+              | {{ progress | toHHMMSS }}
+            +e.progress-background
+              +e.progress-color(:style="{width: progressInPercents + '%'}")
+            +e.progress-time
+              | {{ duration | toHHMMSS }}
+        +e.controls
+          +e('button').play-button(@click='play')
+            icon(:name="(isPlaying ? 'pause' : 'play') + '_circle_filled'")
+          +e.stream-selection(ref='selection')
+            +e('button').dropdown-button(@click='dropdown = !dropdown')
+              | {{ source.name }}
+            +e('ul').dropdown(:class="{'player__dropdown_active': dropdown}")
+              +e('li').dropdown-item(v-for='(stream) of streams.filter(s => s.name !== source.name)', :key='stream.id', @click='selectStream(stream.id)')
+                | {{ stream.name }}
+          +e.volume
+            icon(name='volume_mute')
+            +e.volume-slider
+              seek-bar(:value='volume', @update:value='setVolume')
+            icon(name='volume_up')
+        // end .player
+    +e.chat
+      +e('a').open-link(href='https://lfradio.chatovod.ru', target='_blank')
+        icon(name='open_in_new')
+      iframe(src='https://lfradio.chatovod.ru/')
+    +e.ad
+      ad
 </template>
 
 <script lang="ts">

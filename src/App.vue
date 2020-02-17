@@ -1,9 +1,7 @@
-<template>
-  <div class="page__wrapper">
-    <div class="page__content">
-      <router-view />
-    </div>
-  </div>
+<template lang="pug">
+  .page__wrapper
+    .page__content
+      router-view
 </template>
 
 <script lang="ts">
@@ -11,7 +9,6 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component({})
 export default class App extends Vue {
-
 }
 </script>
 

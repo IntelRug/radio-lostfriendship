@@ -1,24 +1,11 @@
-<template>
-  <!-- begin .seek-bar  -->
-  <div
-    class="seek-bar"
-    @mousedown="onMouseDown"
-  >
-    <div class="seek-bar__box">
-      <div
-        ref="bg"
-        class="seek-bar__bg"
-        :style="{width: valueSynced * 100 + '%'}"
-      >
-        <div
-          ref="seeker"
-          class="seek-bar__seeker"
-          :class="{'seek-bar__seeker_active': pointerDown}"
-        />
-      </div>
-    </div>
-  </div>
-  <!-- end .seek-bar -->
+<template lang="pug">
+  include ../../tools/mixins
+  // begin .seek-bar
+  +b.seek-bar(@mousedown='onMouseDown')
+    +e.box
+      +e.bg(ref='bg', :style="{width: valueSynced * 100 + '%'}")
+        +e.seeker(ref='seeker', :class="{'seek-bar__seeker_active': pointerDown}")
+  // end .seek-bar
 </template>
 
 <script lang="ts">
