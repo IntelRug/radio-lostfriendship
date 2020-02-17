@@ -54,10 +54,10 @@ import axios from 'axios';
 import moment from 'moment-timezone';
 import Cookies from 'js-cookie';
 import ILiveInfo from '@/types/ILiveInfo';
-import SeekBar from '@/components/SeekBar/SeekBar.vue';
-import Ad from '@/components/Ad/Ad.vue';
+import SeekBar from '@/components/slider/slider.vue';
+import Ad from '@/components/ad/ad.vue';
 import IIcecastStats from '@/types/IcecastStats';
-import Icon from '@/components/Icon/Icon.vue';
+import Icon from '@/components/icon/icon.vue';
 
 @Component({
   components: {
@@ -291,4 +291,4 @@ export default class Home extends Vue {
   }
 }
 </script>
-<style lang="stylus" src="./Home.styl" />
+<style lang="stylus" src="home.styl" />

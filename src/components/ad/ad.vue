@@ -17,4 +17,4 @@ export default class Ad extends Vue {
 }
 </script>
 
-<style lang="stylus" src="./Ad.styl" />
+<style lang="stylus" src="ad.styl" />

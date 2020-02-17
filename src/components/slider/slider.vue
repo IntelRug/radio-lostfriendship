@@ -50,15 +50,15 @@ export default class SeekBar extends Vue {
 
   onMouseDown(event: MouseEvent) {
     this.pointerDown = true;
-    this.valueSynced = SeekBar.getPosition(this.bg.parentElement, event);
+    this.valueSynced = slider.getPosition(this.bg.parentElement, event);
   }
 
   onMouseMove(event: MouseEvent) {
     if (this.pointerDown) {
-      this.valueSynced = SeekBar.getPosition(this.bg.parentElement, event);
+      this.valueSynced = slider.getPosition(this.bg.parentElement, event);
     }
   }
 }
 
 </script>
-<style lang="stylus" src="./SeekBar.styl" />
+<style lang="stylus" src="slider.styl" />

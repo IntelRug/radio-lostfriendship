@@ -12,4 +12,4 @@ export default class App extends Vue {
 }
 </script>
 
-<style lang="stylus" src="./App.styl" />
+<style lang="stylus" src="app.styl" />
