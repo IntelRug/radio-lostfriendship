@@ -100,6 +100,16 @@
       </div>
       <!-- end .player-->
     </div>
+    <div class="content__chat">
+      <a
+        href="https://lfradio.chatovod.ru"
+        class="content__open-link"
+        target="_blank"
+      >
+        <icon name="open_in_new" />
+      </a>
+      <iframe src="https://lfradio.chatovod.ru/" />
+    </div>
     <div class="content__ad">
       <Ad />
     </div>
