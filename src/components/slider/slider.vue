@@ -1,7 +1,7 @@
 <template lang="pug">
   include ../../tools/mixins
   // begin .seek-bar
-  +b.seek-bar(@mousedown='onMouseDown')
+  +b.slider(@mousedown='onMouseDown')
     +e.box
       +e.bg(ref='bg', :style="{width: valueSynced * 100 + '%'}")
         +e.seeker(ref='seeker', :class="{'seek-bar__seeker_active': pointerDown}")
@@ -17,8 +17,10 @@ import {
 } from 'vue-property-decorator';
 
 
-@Component({})
-export default class SeekBar extends Vue {
+@Component({
+  name: 'slider',
+})
+export default class Slider extends Vue {
   @PropSync('value', { default: 0 }) valueSynced!: number;
   @Ref() private bg!: HTMLElement;
   @Ref() private timestamp!: HTMLElement;
@@ -50,15 +52,15 @@ export default class SeekBar extends Vue {
 
   onMouseDown(event: MouseEvent) {
     this.pointerDown = true;
-    this.valueSynced = slider.getPosition(this.bg.parentElement, event);
+    this.valueSynced = Slider.getPosition(this.bg.parentElement, event);
   }
 
   onMouseMove(event: MouseEvent) {
     if (this.pointerDown) {
-      this.valueSynced = slider.getPosition(this.bg.parentElement, event);
+      this.valueSynced = Slider.getPosition(this.bg.parentElement, event);
     }
   }
 }
 
 </script>
-<style lang="stylus" src="slider.styl" />
+<style lang="stylus" src="./slider.styl" />

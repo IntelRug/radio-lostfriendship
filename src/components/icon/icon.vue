@@ -12,7 +12,7 @@ import {
 } from 'vue-property-decorator';
 
   @Component({
-    name: 'icon.vue',
+    name: 'icon',
   })
 export default class Icon extends Vue {
     @Prop({ type: String, required: true }) name!: string;

@@ -11,10 +11,12 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 
-@Component({})
+@Component({
+  name: 'ad',
+})
 export default class Ad extends Vue {
   private discordLink: string = 'https://discord.gg/tFEEYzm';
 }
 </script>
 
-<style lang="stylus" src="ad.styl" />
+<style lang="stylus" src="./ad.styl" />
