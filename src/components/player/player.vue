@@ -149,7 +149,7 @@ export default class Player extends Vue {
       }
       return this.liveInfo[this.track].metadata.track_title || 'Unknown title';
     }
-    return 'Unknown title';
+    return '...';
   }
 
   get artist() {
@@ -160,7 +160,7 @@ export default class Player extends Vue {
       }
       return this.liveInfo[this.track].metadata.artist_name || 'Unknown artist';
     }
-    return 'Unknown artist';
+    return '...';
   }
 
   get duration() {
