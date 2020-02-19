@@ -3,7 +3,7 @@
   // begin .volume-slider
   +b.volume-slider
     +e('button').button(@click="mute")
-      +e('icon').icon(:name='`volume_${this.syncedMuted ? \'off\' : \'mute\'}`')
+      +e('icon').icon(:name='`volume_${this.syncedMuted ? \'off\' : \'up\'}`')
     +e.slider
       slider(:value.sync='syncedVolume')
     // +e('button').up-button(@click="up")
