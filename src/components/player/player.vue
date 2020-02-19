@@ -9,8 +9,8 @@
       +e('span').listeners
         icon(name='person_outline')
         | {{ listeners }}
-      +e('a').playlist(href='/playlist/RadioLostFriendship.m3u')
-        | M3U
+      +e('a').playlist(href='/playlist/LostFriendshipRadio.m3u')
+        +e('icon').icon(name="queue_music")
     +e.meta
       +e.meta-title(v-html='title')
       +e.meta-artist(v-html='artist')

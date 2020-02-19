@@ -36,6 +36,7 @@
 		margin 0 10px
 		color #749ce5
 		font-size 16px
+		font-weight 500
 		line-height 30px
 
 		& .icon
@@ -46,20 +47,17 @@
 
 
 	&__playlist
-		height 30px
-		padding 0 12px
-		color #d0d0d0
-		font-size 14px
-		font-weight 500
-		line-height 30px
-		text-decoration none
 		cursor pointer
-		background-color rgba(255, 255, 255, .1)
-		border-radius 4px
-		transition .1s ease-out
 
-		&:hover
-			background-color rgba(0, 0, 0, .2)
+		& ^[0]__icon
+			display block
+			width 30px
+			height 30px
+			transition .2s ease
+			fill #808080
+
+			&:hover
+				fill #909090
 
 
 
