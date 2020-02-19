@@ -1,7 +1,7 @@
 <template lang="pug">
   include ../../tools/mixins
   // begin .seek-bar
-  +b.slider(@mousedown='onMouseDown')
+  +b.slider(@mousedown='onMouseDown' @touchstart="onMouseDown")
     +e.box
       +e.bg(ref='bg', :style="{width: valueSynced * 100 + '%'}")
         +e.seeker(ref='seeker', :class="{'seek-bar__seeker_active': pointerDown}")
@@ -31,15 +31,26 @@ export default class Slider extends Vue {
     document.addEventListener('mouseup', () => {
       this.pointerDown = false;
     });
-    document.addEventListener('mousemove', (event) => {
-      this.onMouseMove(event);
+    document.addEventListener('touchend', () => {
+      this.pointerDown = false;
     });
+    document.addEventListener('mousemove', this.onMouseMove);
+    document.addEventListener('touchmove', this.onMouseMove);
   }
 
-  static getPosition(elem: HTMLElement | null, event: MouseEvent) {
+  static getPosition(elem: HTMLElement | null, event: MouseEvent | TouchEvent) {
     if (elem !== undefined && elem !== null && event !== undefined) {
       const prefix = elem.getBoundingClientRect().left;
-      let pointE = (((event.pageX - prefix) / elem.clientWidth));
+      let pageX = 0;
+      // @ts-ignore
+      if (window.TouchEvent && event instanceof TouchEvent) {
+        // eslint-disable-next-line prefer-destructuring
+        pageX = event.touches[0].pageX;
+      } else if (event instanceof MouseEvent) {
+        // eslint-disable-next-line prefer-destructuring
+        pageX = event.pageX;
+      }
+      let pointE = (((pageX - prefix) / elem.clientWidth));
       if (pointE < 0) {
         pointE = 0;
       } else if (pointE > 1) {
@@ -50,17 +61,17 @@ export default class Slider extends Vue {
     return 0;
   }
 
-  onMouseDown(event: MouseEvent) {
+  onMouseDown(event: MouseEvent | TouchEvent) {
     this.pointerDown = true;
     this.valueSynced = Slider.getPosition(this.bg.parentElement, event);
   }
 
-  onMouseMove(event: MouseEvent) {
+  onMouseMove(event: MouseEvent | TouchEvent) {
     if (this.pointerDown) {
       this.valueSynced = Slider.getPosition(this.bg.parentElement, event);
     }
   }
 }
-
 </script>
+
 <style lang="stylus" src="./slider.styl" />
