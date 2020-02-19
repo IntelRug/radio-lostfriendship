@@ -30,11 +30,8 @@
         +e('ul').dropdown(:class="{'player__dropdown_active': dropdown}")
           +e('li').dropdown-item(v-for='(stream) of streams.filter(s => s.name !== source.name)', :key='stream.id', @click='selectStream(stream.id)')
             | {{ stream.name }}
-      +e.volume
-        icon(name='volume_mute')
-        +e.volume-slider
-          slider(:value='volume', @update:value='setVolume')
-        icon(name='volume_up')
+      +e.volume-slider
+        volume-slider(:volume.sync="volume" :muted.sync="muted")
   // end .player
 </template>
 
@@ -50,10 +47,12 @@ import ILiveInfo from '@/types/ILiveInfo';
 import IIcecastStats from '@/types/IcecastStats';
 import Icon from '@/components/icon/icon.vue';
 import Slider from '@/components/slider/slider.vue';
+import VolumeSlider from '@/components/volume-slider/volume-slider.vue';
 
 @Component({
   name: 'player',
   components: {
+    VolumeSlider,
     Icon,
     Slider,
   },
@@ -91,6 +90,7 @@ export default class Player extends Vue {
   private selectedStreamId: number = 1;
   private dropdown: boolean = false;
   private volume: number = 0.5;
+  private muted: boolean = false;
 
   @Ref() audio!: HTMLAudioElement;
   @Ref() selection!: HTMLDivElement;
@@ -120,6 +120,11 @@ export default class Player extends Vue {
   async onVolumeChanged(val: number) {
     this.audio.volume = val;
     Cookies.set('volume', String(val), { expires: 3650 });
+  }
+
+  @Watch('muted')
+  onMutedChanged(val: boolean) {
+    this.audio.muted = val;
   }
 
   get track() {
@@ -269,10 +274,6 @@ export default class Player extends Vue {
       await this.$nextTick();
       this.isPlaying = true;
     }
-  }
-
-  setVolume(value: number) {
-    this.volume = value;
   }
 }
 </script>

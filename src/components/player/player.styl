@@ -156,7 +156,7 @@
 		height 40px
 		margin-left 8px
 
-		+above(481px)
+		+above(400px)
 			width auto
 
 
@@ -174,7 +174,7 @@
 		outline none
 		transition .1s ease-out
 
-		+above(481px)
+		+above(400px)
 			background-color transparent
 
 		&:hover
@@ -215,24 +215,9 @@
 
 
 
-	&__volume
+	&__volume-slider
 		display none
-		align-items center
-		justify-content flex-end
 		flex-grow 1
 
-		+above(481px)
-			display flex
-
-		& .icon
-			flex-shrink 0
-			width 32px
-			height 32px
-			fill grey
-
-
-
-	&__volume-slider
-		flex-basis 100px
-		max-width 100px
-		margin 0 8px
+		+above(400px)
+			display block
