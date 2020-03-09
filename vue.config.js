@@ -2,7 +2,10 @@ const path = require('path');
 
 module.exports = {
   publicPath: '/',
-
+  devServer: {
+    host: '0.0.0.0',
+    disableHostCheck: true,
+  },
   css: {
     loaderOptions: {
       stylus: {
@@ -29,7 +32,7 @@ module.exports = {
     },
   },
 
-  chainWebpack: (config) => {
+  chainWebpack: config => {
     config.module
       .rule('svg-sprite')
       .use('svgo-loader')

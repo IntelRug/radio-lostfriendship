@@ -12,9 +12,7 @@
 </template>
 
 <script lang="ts">
-import {
-  Component, Vue,
-} from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 import Ad from '@/components/ad/ad.vue';
 import Player from '@/components/player/player.vue';
 import Icon from '@/components/icon/icon.vue';
@@ -27,7 +25,6 @@ import '@/components/content/content.styl';
     Ad,
   },
 })
-export default class Home extends Vue {
-}
+export default class Home extends Vue {}
 </script>
 <style lang="stylus" src="./home.styl" />

@@ -15,7 +15,7 @@ import { Component, Vue } from 'vue-property-decorator';
   name: 'ad',
 })
 export default class Ad extends Vue {
-  private discordLink: string = 'https://discord.gg/tFEEYzm';
+  private discordLink = 'https://discord.gg/tFEEYzm';
 }
 </script>
 

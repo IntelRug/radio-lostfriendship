@@ -12,19 +12,20 @@ const BLOCKS_DIR = path.join(__dirname, 'src/components');
 
 // default content for files in new block
 const fileSources = {
-  vue: '<template lang="pug">\n'
-    + '  include ../../tools/mixins\n'
-    + '  // begin .{blockName}\n'
-    + '  +b.{blockName}\n'
-    + '  // end .{blockName}\n'
-    + '</template>\n\n'
-    + '<script lang="ts">\n'
-    + 'import { Component, Vue } from \'vue-property-decorator\';\n\n'
-    + '@Component\n'
-    + 'export default class {className} extends Vue {\n'
-    + '}\n'
-    + '</script>\n\n'
-    + '<style lang="stylus" src="./{blockName}.styl" />\n',
+  vue:
+    '<template lang="pug">\n' +
+    '  include ../../tools/mixins\n' +
+    '  // begin .{blockName}\n' +
+    '  +b.{blockName}\n' +
+    '  // end .{blockName}\n' +
+    '</template>\n\n' +
+    '<script lang="ts">\n' +
+    "import { Component, Vue } from 'vue-property-decorator';\n\n" +
+    '@Component\n' +
+    'export default class {className} extends Vue {\n' +
+    '}\n' +
+    '</script>\n\n' +
+    '<style lang="stylus" src="./{blockName}.styl" />\n',
   styl: '.{blockName}\n\tdisplay block\n',
 };
 
@@ -43,9 +44,7 @@ function validateBlockName(blockName) {
     if (isValid) {
       resolve(isValid);
     } else {
-      const errMsg = (
-        `ERR>>> An incorrect block name '${blockName}'\nERR>>> A block name must include letters, numbers & the minus symbol.`
-      );
+      const errMsg = `ERR>>> An incorrect block name '${blockName}'\nERR>>> A block name must include letters, numbers & the minus symbol.`;
       reject(errMsg);
     }
   });
@@ -53,7 +52,7 @@ function validateBlockName(blockName) {
 
 function directoryExist(blockPath, blockName) {
   return new Promise((resolve, reject) => {
-    fs.stat(blockPath, (notExist) => {
+    fs.stat(blockPath, notExist => {
       if (notExist) {
         resolve();
       } else {
@@ -65,7 +64,7 @@ function directoryExist(blockPath, blockName) {
 
 function createDir(dirPath) {
   return new Promise((resolve, reject) => {
-    fs.mkdir(dirPath, (err) => {
+    fs.mkdir(dirPath, err => {
       if (err) {
         reject(`ERR>>> Failed to create a folder '${dirPath}'`);
       } else {
@@ -77,14 +76,16 @@ function createDir(dirPath) {
 
 function createFiles(blocksPath, blockName) {
   const promises = [];
-  Object.keys(fileSources).forEach((ext) => {
-    const fileSource = fileSources[ext].replace(/{blockName}/g, blockName).replace(/{className}/g, toPascalCase(blockName));
+  Object.keys(fileSources).forEach(ext => {
+    const fileSource = fileSources[ext]
+      .replace(/{blockName}/g, blockName)
+      .replace(/{className}/g, toPascalCase(blockName));
     const filename = `${blockName}.${ext}`;
     const filePath = path.join(blocksPath, filename);
 
     promises.push(
       new Promise((resolve, reject) => {
-        fs.writeFile(filePath, fileSource, 'utf8', (err) => {
+        fs.writeFile(filePath, fileSource, 'utf8', err => {
           if (err) {
             reject(`ERR>>> Failed to create a file '${filePath}'`);
           } else {
@@ -115,13 +116,12 @@ function printErrorMessage(errText) {
   rl.close();
 }
 
-
 // //////////////////////////////////////////////////////////////////////////
 
 function initMakeBlock(candidateBlockName) {
   const blockNames = candidateBlockName.trim().split(/\s+/);
 
-  const makeBlock = (blockName) => {
+  const makeBlock = blockName => {
     const blockPath = path.join(BLOCKS_DIR, blockName);
 
     return validateBlockName(blockName)
@@ -129,7 +129,7 @@ function initMakeBlock(candidateBlockName) {
       .then(() => createDir(blockPath))
       .then(() => createFiles(blockPath, blockName))
       .then(() => getFiles(blockPath))
-      .then((files) => {
+      .then(files => {
         const line = '-'.repeat(48 + blockName.length);
         console.log(line);
         console.log(`The block has just been created in 'src/components/${blockName}'`);
@@ -148,7 +148,6 @@ function initMakeBlock(candidateBlockName) {
   return Promise.all(promises);
 }
 
-
 // //////////////////////////////////////////////////////////////////////////
 //
 // Start here
@@ -157,17 +156,21 @@ function initMakeBlock(candidateBlockName) {
 // Command line arguments
 const blockNameFromCli = process.argv
   .slice(2)
-// join all arguments to one string (to simplify the capture user input errors)
+  // join all arguments to one string (to simplify the capture user input errors)
   .join(' ');
 
 // If the user pass the name of the block in the command-line options
 // that create a block. Otherwise - activates interactive mode
 if (blockNameFromCli !== '') {
-  initMakeBlock(blockNameFromCli).then(() => rl.close()).catch(printErrorMessage);
+  initMakeBlock(blockNameFromCli)
+    .then(() => rl.close())
+    .catch(printErrorMessage);
 } else {
   rl.setPrompt('Block(s) name: ');
   rl.prompt();
-  rl.on('line', (line) => {
-    initMakeBlock(line).then(() => rl.close()).catch(printErrorMessage);
+  rl.on('line', line => {
+    initMakeBlock(line)
+      .then(() => rl.close())
+      .catch(printErrorMessage);
   });
 }

@@ -1,7 +1,4 @@
-/* eslint-disable camelcase */
-export default IIcecastStats;
-
-interface IIcecastStats {
+export interface IcecastStats {
   admin: string;
   host: string;
   location: string;

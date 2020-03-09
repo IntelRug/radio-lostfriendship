@@ -9,13 +9,7 @@
 </template>
 
 <script lang="ts">
-import {
-  Component,
-  Vue,
-  Ref,
-  PropSync,
-} from 'vue-property-decorator';
-
+import { Component, Vue, Ref, PropSync } from 'vue-property-decorator';
 
 @Component({
   name: 'slider',
@@ -25,7 +19,7 @@ export default class Slider extends Vue {
   @Ref() private bg!: HTMLElement;
   @Ref() private timestamp!: HTMLElement;
 
-  private pointerDown: boolean = false;
+  private pointerDown = false;
 
   mounted() {
     document.addEventListener('mouseup', () => {
@@ -50,7 +44,7 @@ export default class Slider extends Vue {
         // eslint-disable-next-line prefer-destructuring
         pageX = event.pageX;
       }
-      let pointE = (((pageX - prefix) / elem.clientWidth));
+      let pointE = (pageX - prefix) / elem.clientWidth;
       if (pointE < 0) {
         pointE = 0;
       } else if (pointE > 1) {

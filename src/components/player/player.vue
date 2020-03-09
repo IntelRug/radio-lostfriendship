@@ -36,15 +36,13 @@
 </template>
 
 <script lang="ts">
-import {
-  Component, Ref, Vue, Watch,
-} from 'vue-property-decorator';
+import { Component, Ref, Vue, Watch } from 'vue-property-decorator';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import moment from 'moment-timezone';
 import { toHHMMSS } from '@/tools/filters';
-import ILiveInfo from '@/types/ILiveInfo';
-import IIcecastStats from '@/types/IcecastStats';
+import { LiveInfo } from '@/types/LiveInfo';
+import { IcecastStats } from '@/types/IcecastStats';
 import Icon from '@/components/icon/icon.vue';
 import Slider from '@/components/slider/slider.vue';
 import VolumeSlider from '@/components/volume-slider/volume-slider.vue';
@@ -61,13 +59,13 @@ import VolumeSlider from '@/components/volume-slider/volume-slider.vue';
   },
 })
 export default class Player extends Vue {
-  private liveInfo: ILiveInfo | null = null;
-  private icecastStats: IIcecastStats | null = null;
-  private now: number = 0;
+  private liveInfo: LiveInfo | null = null;
+  private icecastStats: IcecastStats | null = null;
+  private now = 0;
   private getLiveInfoInterval!: number;
   private nowInterval!: number;
-  private isPlaying: boolean = false;
-  private streams: {id: number, name: string, url: string, offset: number}[] = [
+  private isPlaying = false;
+  private streams: { id: number; name: string; url: string; offset: number }[] = [
     {
       id: 1,
       name: '320 KBIT/S MP3',
@@ -87,10 +85,10 @@ export default class Player extends Vue {
       offset: 5,
     },
   ];
-  private selectedStreamId: number = 1;
-  private dropdown: boolean = false;
-  private volume: number = 0.5;
-  private muted: boolean = false;
+  private selectedStreamId = 1;
+  private dropdown = false;
+  private volume = 0.5;
+  private muted = false;
 
   @Ref() audio!: HTMLAudioElement;
   @Ref() selection!: HTMLDivElement;
@@ -148,8 +146,13 @@ export default class Player extends Vue {
 
   get title() {
     if (this.liveInfo) {
-      if (this.type === 'livestream' && this.icecastStats && this.icecastStats.source && this.icecastStats.source) {
-        return this.icecastStats.source![0].title.split('-')[1];
+      if (
+        this.type === 'livestream' &&
+        this.icecastStats &&
+        this.icecastStats.source &&
+        this.icecastStats.source
+      ) {
+        return this.icecastStats.source[0].title.split('-')[1];
         // return this.liveInfo[this.track].name.split('-')[0];
       }
       return this.liveInfo[this.track].metadata.track_title || 'Unknown title';
@@ -159,8 +162,13 @@ export default class Player extends Vue {
 
   get artist() {
     if (this.liveInfo) {
-      if (this.type === 'livestream' && this.icecastStats && this.icecastStats.source && this.icecastStats.source) {
-        return this.icecastStats.source![0].title.split('-')[0];
+      if (
+        this.type === 'livestream' &&
+        this.icecastStats &&
+        this.icecastStats.source &&
+        this.icecastStats.source
+      ) {
+        return this.icecastStats.source[0].title.split('-')[0];
         // return 'LiveStream';
       }
       return this.liveInfo[this.track].metadata.artist_name || 'Unknown artist';
@@ -177,7 +185,7 @@ export default class Player extends Vue {
 
   get progress() {
     if (this.liveInfo) {
-      const progress: number = (this.now - this.liveInfo[this.track].startsAt) - this.source.offset;
+      const progress: number = this.now - this.liveInfo[this.track].startsAt - this.source.offset;
       if (progress < 0) {
         return 0;
       }
@@ -190,16 +198,16 @@ export default class Player extends Vue {
   }
 
   get progressInPercents() {
-    return 100 / this.duration * this.progress;
+    return (100 / this.duration) * this.progress;
   }
 
   get source() {
-    return this.streams.find(s => s.id === this.selectedStreamId)!;
+    return this.streams.find(s => s.id === this.selectedStreamId) || this.streams[0];
   }
 
   get listeners() {
     if (this.icecastStats && Array.isArray(this.icecastStats.source)) {
-      return this.icecastStats.source.reduce((acc, { listeners }) => (acc + (listeners || 0)), 0);
+      return this.icecastStats.source.reduce((acc, { listeners }) => acc + (listeners || 0), 0);
     }
     return 0;
   }
@@ -207,7 +215,9 @@ export default class Player extends Vue {
   created() {
     this.getMetadata();
     this.getLiveInfoInterval = setInterval(this.getMetadata, 10000);
-    this.nowInterval = setInterval(() => { this.now = Math.floor(Date.now() / 1000); }, 500);
+    this.nowInterval = setInterval(() => {
+      this.now = Math.floor(Date.now() / 1000);
+    }, 500);
   }
 
   mounted() {
@@ -217,8 +227,12 @@ export default class Player extends Vue {
       }
     };
     this.audio.volume = this.volume;
-    this.audio.onpause = () => { this.isPlaying = false; };
-    this.audio.onplay = () => { this.isPlaying = true; };
+    this.audio.onpause = () => {
+      this.isPlaying = false;
+    };
+    this.audio.onplay = () => {
+      this.isPlaying = true;
+    };
     this.getCookies();
   }
 
@@ -240,24 +254,42 @@ export default class Player extends Vue {
       this.icecastStats = response2.data ? response2.data.icestats : null;
       if (this.liveInfo) {
         const zone = 'Europe/London';
-        this.liveInfo.previous.startsAt = moment.tz(this.liveInfo.previous.starts, 'YYYY-MM-DD HH-mm-ss', zone).unix();
-        this.liveInfo.current.startsAt = moment.tz(this.liveInfo.current.starts, 'YYYY-MM-DD HH-mm-ss', zone).unix();
-        this.liveInfo.next.startsAt = moment.tz(this.liveInfo.next.starts, 'YYYY-MM-DD HH-mm-ss', zone).unix();
-        this.liveInfo.previous.endsAt = moment.tz(this.liveInfo.previous.ends, 'YYYY-MM-DD HH-mm-ss', zone).unix();
-        this.liveInfo.current.endsAt = moment.tz(this.liveInfo.current.ends, 'YYYY-MM-DD HH-mm-ss', zone).unix();
-        this.liveInfo.next.endsAt = moment.tz(this.liveInfo.next.ends, 'YYYY-MM-DD HH-mm-ss', zone).unix();
+        this.liveInfo.previous.startsAt = moment
+          .tz(this.liveInfo.previous.starts, 'YYYY-MM-DD HH-mm-ss', zone)
+          .unix();
+        this.liveInfo.current.startsAt = moment
+          .tz(this.liveInfo.current.starts, 'YYYY-MM-DD HH-mm-ss', zone)
+          .unix();
+        this.liveInfo.next.startsAt = moment
+          .tz(this.liveInfo.next.starts, 'YYYY-MM-DD HH-mm-ss', zone)
+          .unix();
+        this.liveInfo.previous.endsAt = moment
+          .tz(this.liveInfo.previous.ends, 'YYYY-MM-DD HH-mm-ss', zone)
+          .unix();
+        this.liveInfo.current.endsAt = moment
+          .tz(this.liveInfo.current.ends, 'YYYY-MM-DD HH-mm-ss', zone)
+          .unix();
+        this.liveInfo.next.endsAt = moment
+          .tz(this.liveInfo.next.ends, 'YYYY-MM-DD HH-mm-ss', zone)
+          .unix();
         if (this.liveInfo.previous.type === 'track') {
-          this.liveInfo.previous.metadata.seconds = moment.duration(this.liveInfo.previous.metadata.length).asSeconds();
+          this.liveInfo.previous.metadata.seconds = moment
+            .duration(this.liveInfo.previous.metadata.length)
+            .asSeconds();
         }
         if (this.liveInfo.current.type === 'track') {
-          this.liveInfo.current.metadata.seconds = moment.duration(this.liveInfo.current.metadata.length).asSeconds();
+          this.liveInfo.current.metadata.seconds = moment
+            .duration(this.liveInfo.current.metadata.length)
+            .asSeconds();
         }
         if (this.liveInfo.next.type === 'track') {
-          this.liveInfo.next.metadata.seconds = moment.duration(this.liveInfo.next.metadata.length).asSeconds();
+          this.liveInfo.next.metadata.seconds = moment
+            .duration(this.liveInfo.next.metadata.length)
+            .asSeconds();
         }
       }
       // eslint-disable-next-line no-empty
-    } catch (e) { }
+    } catch (e) {}
   }
 
   play() {

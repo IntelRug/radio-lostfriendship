@@ -12,9 +12,7 @@
 </template>
 
 <script lang="ts">
-import {
-  Component, PropSync, Vue,
-} from 'vue-property-decorator';
+import { Component, PropSync, Vue } from 'vue-property-decorator';
 import Icon from '@/components/icon/icon.vue';
 import Slider from '@/components/slider/slider.vue';
 @Component({

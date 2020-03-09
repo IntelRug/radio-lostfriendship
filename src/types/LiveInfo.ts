@@ -1,40 +1,34 @@
-export default ILiveInfo;
-
-interface ILiveInfo {
+export interface LiveInfo {
   env: string;
   schedulerTime: string;
-  previous: ITrack;
-  current: ITrack;
-  next: ITrack;
+  previous: Track;
+  current: Track;
+  next: Track;
   timezone: string;
   timezoneOffset: string;
 }
 
-export interface ITrack {
+export interface Track {
   starts: string;
   startsAt: number;
   ends: string;
   endsAt: number;
   type: string;
   name: string;
-  metadata: IMetadata;
+  metadata: Metadata;
 }
-export interface IMetadata {
+
+export interface Metadata {
   id: number;
   name?: string;
   mime?: string;
-  // eslint-disable-next-line camelcase
   track_title?: string;
-  // eslint-disable-next-line camelcase
   artist_name?: string;
-  // eslint-disable-next-line camelcase
   bit_rate?: number;
-  // eslint-disable-next-line camelcase
   sample_rate?: number;
   length?: string;
   seconds: number;
   genre?: string;
-  // eslint-disable-next-line camelcase
   replay_gain?: string;
   filesize?: number;
 }
