@@ -121,9 +121,8 @@ export default class StatsListeners extends Vue {
         `,
       });
       this.listeners = response.data.getListeners;
-    } catch (e) {
-      console.error(e);
-    }
+      // eslint-disable-next-line no-empty
+    } catch (e) {}
   }
 }
 </script>

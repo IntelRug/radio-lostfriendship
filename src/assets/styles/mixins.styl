@@ -1,7 +1,13 @@
+defaultBoxShadow()
+	box-shadow 0 0 5px $shadow-color
+
+defaultTransition()
+	transition all .2s ease
+
 above(width)
-  @media screen and (min-width width)
-    {block}
+	@media screen and (min-width width)
+		{block}
 
 below(width)
-  @media screen and (max-width width)
-    {block}
+	@media screen and (max-width width)
+		{block}

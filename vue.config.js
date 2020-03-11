@@ -10,7 +10,7 @@ module.exports = {
     loaderOptions: {
       stylus: {
         import: [
-          path.resolve(__dirname, 'src/assets/styles/normalize.styl'),
+          path.resolve(__dirname, 'src/assets/styles/variables.styl'),
           path.resolve(__dirname, 'src/assets/styles/mixins.styl'),
         ],
       },

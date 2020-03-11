@@ -1,25 +1,29 @@
 <template lang="pug">
   include ../../tools/mixins
-  +content
+  +b.home
     +e.player
-      player
+      tile.tile_paddings_medium.tile_borders_top
+        player
     +e.chat
-      +e('a').open-link(href='https://lfradio.chatovod.ru', target='_blank')
-        icon(name='open_in_new')
-      iframe(src='https://lfradio.chatovod.ru/')
+      chat
     +e.ad
-      ad
+      tile.tile_paddings_small.tile_borders_bottom
+        ad
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import '@/components/content/content.styl';
 import Ad from '@/components/ad/ad.vue';
 import Player from '@/components/player/player.vue';
 import Icon from '@/components/icon/icon.vue';
-import '@/components/content/content.styl';
+import Tile from '@/components/tile/tile.vue';
+import Chat from '@/components/chat/chat.vue';
 
 @Component({
   components: {
+    Chat,
+    Tile,
     Player,
     Icon,
     Ad,
