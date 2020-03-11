@@ -18,7 +18,7 @@ Vue.use(VueApollo);
 // HTTP connection to the API
 const httpLink = createHttpLink({
   // You should use an absolute URL here
-  uri: 'http://radio.lostfriendship.net/graphql',
+  uri: 'https://radio.lostfriendship.net/graphql',
 });
 
 const apolloClient = new ApolloClient({
