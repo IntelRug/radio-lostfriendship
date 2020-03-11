@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '@/views/home/home.vue';
+import Admin from '@/views/admin/admin.vue';
 
 Vue.use(VueRouter);
 
@@ -9,6 +10,11 @@ const routes = [
     path: '/',
     name: 'home',
     component: Home,
+  },
+  {
+    path: '/admin/listeners',
+    name: 'admin',
+    component: Admin,
   },
   {
     path: '*',

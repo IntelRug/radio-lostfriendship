@@ -1,0 +1,7 @@
+overwrite: true
+schema: http://localhost:4000/graphql
+documents: src/apollo/queries/**/*.graphql
+generates:
+  src/apollo/schema.ts:
+    - typescript
+    - typescript-operations

@@ -1,6 +1,6 @@
 include ../../../node_modules/bemto.pug/bemto
-mixin content()
+mixin content(modifiers = '')
   // begin .content
-  +b.content
+  +b(class="content " + modifiers) 
     block
   // end .content

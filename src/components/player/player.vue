@@ -214,8 +214,8 @@ export default class Player extends Vue {
 
   created() {
     this.getMetadata();
-    this.getLiveInfoInterval = setInterval(this.getMetadata, 10000);
-    this.nowInterval = setInterval(() => {
+    this.getLiveInfoInterval = window.setInterval(this.getMetadata, 10000);
+    this.nowInterval = window.setInterval(() => {
       this.now = Math.floor(Date.now() / 1000);
     }, 500);
   }
