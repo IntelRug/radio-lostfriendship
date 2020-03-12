@@ -1,7 +1,7 @@
 <template lang="pug">
   include ../../tools/mixins
   // begin .seek-bar
-  +b.slider(@mousedown='onMouseDown' @touchstart="onMouseDown")
+  +b.slider(ref="slider" @mousedown='onMouseDown' @touchstart="onMouseDown" @onmousewheel="")
     +e.box
       +e.bg(ref='bg', :style="{width: valueSynced * 100 + '%'}")
         +e.seeker(ref='seeker', :class="{'seek-bar__seeker_active': pointerDown}")
@@ -16,6 +16,7 @@ import { Component, Vue, Ref, PropSync } from 'vue-property-decorator';
 })
 export default class Slider extends Vue {
   @PropSync('value', { default: 0 }) valueSynced!: number;
+  @Ref() private slider!: HTMLElement;
   @Ref() private bg!: HTMLElement;
   @Ref() private timestamp!: HTMLElement;
 
@@ -30,6 +31,17 @@ export default class Slider extends Vue {
     });
     document.addEventListener('mousemove', this.onMouseMove);
     document.addEventListener('touchmove', this.onMouseMove);
+    Slider.onWheel(this.slider, (e: any) => {
+      const delta = e.deltaY || e.detail || e.wheelDelta;
+      const newValue = this.valueSynced + (delta > 0 ? -0.05 : 0.05);
+      if (newValue < 0) {
+        this.valueSynced = 0;
+      } else if (newValue > 1) {
+        this.valueSynced = 1;
+      } else {
+        this.valueSynced = newValue;
+      }
+    });
   }
 
   static getPosition(elem: HTMLElement | null, event: MouseEvent | TouchEvent) {
@@ -63,6 +75,19 @@ export default class Slider extends Vue {
   onMouseMove(event: MouseEvent | TouchEvent) {
     if (this.pointerDown) {
       this.valueSynced = Slider.getPosition(this.bg.parentElement, event);
+    }
+  }
+
+  static onWheel(elem: HTMLElement, handler: any) {
+    if ('onwheel' in document) {
+      // IE9+, FF17+
+      elem.addEventListener('wheel', handler);
+    } else if ('onmousewheel' in document) {
+      // устаревший вариант события
+      elem.addEventListener('mousewheel', handler);
+    } else {
+      // 3.5 <= Firefox < 17, более старое событие DOMMouseScroll пропустим
+      elem.addEventListener('MozMousePixelScroll', handler);
     }
   }
 }
