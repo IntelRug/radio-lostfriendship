@@ -32,6 +32,7 @@ export default class Slider extends Vue {
     document.addEventListener('mousemove', this.onMouseMove);
     document.addEventListener('touchmove', this.onMouseMove);
     Slider.onWheel(this.slider, (e: any) => {
+      e.preventDefault();
       const delta = e.deltaY || e.detail || e.wheelDelta;
       const newValue = this.valueSynced + (delta > 0 ? -0.05 : 0.05);
       if (newValue < 0) {
