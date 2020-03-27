@@ -11,16 +11,18 @@
         | {{ listeners }}
       +e('a').playlist(href='/playlist/LostFriendshipRadio.m3u')
         +e('icon').icon(name="queue_music")
-    +e.meta
-      +e.meta-title(v-html='title')
-      +e.meta-artist(v-html='artist')
-      +e.progress(v-if="type !== 'livestream'")
-        +e.progress-time
-          | {{ progress | toHHMMSS }}
-        +e.progress-background
-          +e.progress-color(:style="{width: progressInPercents + '%'}")
-        +e.progress-time
-          | {{ duration | toHHMMSS }}
+    +e.meta(:class="{player__meta_artwork_disabled: !artwork}")
+      img.player__meta-artwork(:src="artwork")
+      +e.meta-text
+        +e.meta-title(v-html='title')
+        +e.meta-artist(v-html='artist')
+        +e.progress(v-if="type !== 'livestream'")
+          +e.progress-time
+            | {{ progress | toHHMMSS }}
+          +e.progress-background
+            +e.progress-color(:style="{width: progressInPercents + '%'}")
+          +e.progress-time
+            | {{ duration | toHHMMSS }}
     +e.controls
       +e('button').play-button(@click='play')
         icon(:name="(isPlaying ? 'pause' : 'play') + '_circle_filled'")
@@ -142,6 +144,22 @@ export default class Player extends Vue {
       return this.liveInfo[this.track].type;
     }
     return 'track';
+  }
+
+  get artwork(): string {
+    if (this.type !== 'livestream') {
+      if (
+        this.liveInfo &&
+        this.liveInfo[this.track].metadata &&
+        this.liveInfo[this.track].metadata.artwork
+      ) {
+        return `https://radio.lostfriendship.net/artwork/${
+          this.liveInfo[this.track].metadata.id
+        }.png`;
+      }
+      return '/img/player/disc.svg';
+    }
+    return '';
   }
 
   get title() {

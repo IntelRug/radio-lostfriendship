@@ -58,8 +58,31 @@
 
 
 	&__meta
+		display flex
 		margin-top 8px
 
+		&_artwork_disabled
+			& ^[0]__meta-artwork
+				display none
+
+			& ^[0]__progress
+				margin-left 0
+
+
+	&__meta-artwork
+		width 44px
+		height 44px
+		margin-right 12px
+		background-image url('/img/player/disc.svg')
+		background-size cover
+		border-radius 3px
+
+		+above(400px)
+			width 81px
+			height 81px
+
+	&__meta-text
+		flex-grow 1
 
 
 	&__meta-title
@@ -82,8 +105,12 @@
 		display flex
 		align-items center
 		margin-top 8px
+		margin-left -52px
 		padding-bottom 8px
 		border-bottom 1px solid $color-border
+
+		+above(400px)
+			margin-left 0
 
 
 

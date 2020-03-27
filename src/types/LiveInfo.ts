@@ -31,4 +31,6 @@ export interface Metadata {
   genre?: string;
   replay_gain?: string;
   filesize?: number;
+  artwork: string;
+  artwork_url: string;
 }
