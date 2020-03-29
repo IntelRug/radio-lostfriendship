@@ -72,13 +72,13 @@ export default class Player extends Vue {
       id: 1,
       name: '320 KBIT/S MP3',
       url: 'https://radio.lostfriendship.net/320',
-      offset: 10,
+      offset: 0,
     },
     {
       id: 2,
       name: '128 KBIT/S MP3',
       url: 'https://radio.lostfriendship.net/128',
-      offset: 10,
+      offset: 0,
     },
     {
       id: 3,
@@ -271,7 +271,7 @@ export default class Player extends Vue {
       this.liveInfo = response.data;
       this.icecastStats = response2.data ? response2.data.icestats : null;
       if (this.liveInfo) {
-        const zone = 'Europe/London';
+        const zone = '+00:00';
         this.liveInfo.previous.startsAt = moment
           .tz(this.liveInfo.previous.starts, 'YYYY-MM-DD HH-mm-ss', zone)
           .unix();
