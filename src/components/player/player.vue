@@ -271,7 +271,7 @@ export default class Player extends Vue {
       this.liveInfo = response.data;
       this.icecastStats = response2.data ? response2.data.icestats : null;
       if (this.liveInfo) {
-        const zone = '+00:00';
+        const zone = 'UTC';
         this.liveInfo.previous.startsAt = moment
           .tz(this.liveInfo.previous.starts, 'YYYY-MM-DD HH-mm-ss', zone)
           .unix();
