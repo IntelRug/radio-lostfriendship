@@ -170,8 +170,12 @@ export default class Player extends Vue {
         this.icecastStats.source &&
         this.icecastStats.source
       ) {
-        return this.icecastStats.source[0].title.split('-')[1];
+        return this.icecastStats.source[0].title.split(' - ')[1];
         // return this.liveInfo[this.track].name.split('-')[0];
+      }
+      if (this.type === 'webstream') {
+        const name = this.liveInfo[this.track].name.split(' - ');
+        return name[name.length - 1] || 'Unknown title';
       }
       return this.liveInfo[this.track].metadata.track_title || 'Unknown title';
     }
@@ -186,8 +190,12 @@ export default class Player extends Vue {
         this.icecastStats.source &&
         this.icecastStats.source
       ) {
-        return this.icecastStats.source[0].title.split('-')[0];
+        return this.icecastStats.source[0].title.split(' - ')[0];
         // return 'LiveStream';
+      }
+      if (this.type === 'webstream') {
+        const name = this.liveInfo[this.track].name.split(' - ');
+        return name[name.length - 2] || 'Unknown artist';
       }
       return this.liveInfo[this.track].metadata.artist_name || 'Unknown artist';
     }
