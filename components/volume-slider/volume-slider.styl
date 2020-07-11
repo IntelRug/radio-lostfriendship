@@ -1,0 +1,25 @@
+.volume-slider
+	display flex
+	justify-content flex-end
+	align-items center
+
+	&__button
+		display inline-block
+		flex-shrink 0
+		cursor pointer
+		background transparent
+		border none
+		outline none
+
+	&__icon
+		flex-shrink 0
+		fill #cccccc
+
+		&_type
+			&_muted
+				fill #ef5350
+
+	&__slider
+		flex-basis 100px
+		max-width 80px
+		margin 0 8px

@@ -1,6 +1,6 @@
 {
   "name": "GraphQL Schema",
-  "schemaPath": "./src/apollo/schema.graphql",
+  "schemaPath": "./graphql/schema.graphql",
   "extensions": {
     "endpoints": {
       "Default GraphQL Endpoint": {
