@@ -4,8 +4,11 @@
 	flex-wrap nowrap
 	flex-direction row
 	height 72px
-	padding 16px 32px
+	padding 16px
 	background var(--secondary-background)
+
+	+above(size-l)
+		padding 16px 32px
 
 	&__slider
 		position absolute
@@ -21,19 +24,35 @@
 		&_position
 			&_left
 				justify-content left
-				flex 0 0 250px
+				flex 0 0 1px
+
+				+above(size-m)
+					flex-basis 150px
+
+				+above(size-l)
+					flex-basis 250px
 
 			&_right
 				justify-content right
-				flex 0 0 250px
+				flex 0 0 40px
+
+				+above(size-m)
+					flex-basis 180px
+
+				+above(size-l)
+					flex-basis 250px
 
 			&_center
 				overflow hidden
-				justify-content center
+				justify-content flex-start
 				flex-grow 1
 				min-width 0
 
+				+above(size-l)
+					justify-content center
+
 	&__button
+		flex-shrink 0
 		width 40px
 		height 40px
 		padding 8px
@@ -71,20 +90,34 @@
 		fill #cccccc
 
 	&__duration
+		display none
 		padding 0 16px
 		color #aaaaaa
-		font-size 14px
+		font-size 12px
 		font-weight 500
+		white-space nowrap
+
+		+above(size-s)
+			display block
 
 	&__artwork
+		display none
 		flex-shrink 0
 		height 100%
 		max-height 100%
 
+		+above(size-l)
+			display block
+
 	&__metadata
 		overflow hidden
+		flex-grow 1
 		margin-left 16px
-		font-size 16px
+		font-size 14px
+
+		+above(size-l)
+			flex-grow 0
+			font-size 16px
 
 	&__metadata-title
 		overflow hidden
@@ -100,11 +133,18 @@
 		text-overflow ellipsis
 
 	&__voting
-		display flex
+		display none
 		padding-left 8px
+
+		+above(size-m)
+			display flex
 
 		& ^[0]__button
 			margin 0 4px
 
 	&__volume-slider
+		display none
 		flex-grow 1
+
+		+above(size-m)
+			display block
