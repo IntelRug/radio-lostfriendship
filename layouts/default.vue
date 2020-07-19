@@ -1,15 +1,12 @@
 <template>
-  <div class="page__main">
+  <div class="page__wrapper">
     <div class="page__header" />
-    <div class="page__content">
-      <div class="content">
-        <div class="grid__container">
-          <div class="grid__group">
-            <div class="grid__col grid__col_size_12">
-              <nuxt />
-            </div>
-          </div>
-        </div>
+    <div class="page__main">
+      <div class="page__sidebar">
+        <b-sidebar />
+      </div>
+      <div class="page__content">
+        <nuxt />
       </div>
     </div>
     <div class="page__player">
@@ -22,10 +19,13 @@ import '~/assets/stylus/normalize.styl';
 import '~/assets/stylus/grid.styl';
 import '~/assets/stylus/global.styl';
 import '~/assets/stylus/colors.styl';
+import 'leaflet/dist/leaflet.css';
 import { Component, Vue } from 'nuxt-property-decorator';
 import BPlayer from '~/components/player/player.vue';
+import BSidebar from '~/components/sidebar/sidebar.vue';
+
 @Component({
-  components: { BPlayer },
+  components: { BSidebar, BPlayer },
 })
 export default class Default extends Vue {}
 </script>

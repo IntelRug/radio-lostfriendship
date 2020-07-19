@@ -5,7 +5,7 @@ ghPages.publish(
   './',
   {
     src: ['.nuxt/**/*', 'static/**/*', 'package.json', 'yarn.lock'],
-    branch: 'dist',
+    branch: 'dist-nuxt',
   },
   (e) => {
     if (e) {

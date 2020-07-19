@@ -64,6 +64,7 @@ export default {
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/svg-sprite',
     '@nuxtjs/apollo',
+    'nuxt-leaflet',
     [
       'nuxt-i18n',
       {

@@ -1,0 +1,33 @@
+.sidebar
+	display block
+	font-size 16px
+
+	&__item
+		display flex
+		align-items center
+		height 50px
+		cursor pointer
+		border-bottom 1px solid rgba(255, 255, 255, .07)
+		defaultTransition()
+
+		&:hover
+			background rgba(255, 255, 255, .01)
+
+			& ^[0]__item-icon
+				fill var(--primary)
+
+		&.router-link-exact-active
+			& ^[0]__item-icon
+				fill var(--primary)
+
+	&__item-icon
+		flex-shrink 0
+		width 50px
+		height 30px
+		fill var(--accent-background)
+		defaultTransition()
+
+	&__item-text
+		width calc(100% - 50px)
+		padding 0 8px
+		white-space nowrap
