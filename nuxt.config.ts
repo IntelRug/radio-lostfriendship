@@ -126,4 +126,7 @@ export default {
       default: '~/config/apollo.ts',
     },
   },
+  router: {
+    middleware: ['authenticated'],
+  },
 };
