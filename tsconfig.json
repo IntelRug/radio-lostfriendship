@@ -19,6 +19,9 @@
       "types/nuxt-leaflet",
       "@types/node",
       "@nuxt/types",
+      "@nuxtjs/apollo",
+      "vue-apollo",
+      "vue-cli-plugin-apollo/types",
       "nuxt-leaflet"
     ]
   },

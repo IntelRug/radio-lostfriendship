@@ -1,0 +1,58 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+type Query {
+  getHello: String!
+  getCurrentUser: User!
+  getListeners: [Listener!]!
+}
+type User {
+  id: Int!
+  email: String!
+  username: String
+  registeredAt: String!
+  onlineAt: String!
+  role: Float!
+  avatar: Picture!
+  background: Picture!
+}
+type Picture {
+  id: Int!
+  height: Float!
+  width: Float!
+  size: Float!
+  path: String!
+  link: String!
+  ownerId: Int
+  createdAt: String!
+}
+type Listener {
+  id: Int!
+  icecastId: Int!
+  mount: String!
+  ip: String!
+  connectedFor: Int!
+  agent: String
+  connectedAt: Int!
+  disconnectedAt: Int
+  location: Location
+}
+type Location {
+  country: String!
+  city: String!
+  lat: Float!
+  lon: Float!
+}
+type Mutation {
+  signIn(email: String!, password: String!): Token!
+  signUp(email: String!, username: String, password: String!): User!
+}
+type Token {
+  id: Int!
+  value: String!
+  ownerId: Int!
+  createdAt: String!
+  expiresIn: String!
+  usedAt: String!
+}
