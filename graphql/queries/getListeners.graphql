@@ -1,0 +1,18 @@
+query getListeners {
+  getListeners {
+    id
+    icecastId
+    ip
+    mount
+    connectedAt
+    connectedFor
+    disconnectedAt
+    agent
+    location {
+      country
+      city
+      lat
+      lon
+    }
+  }
+}

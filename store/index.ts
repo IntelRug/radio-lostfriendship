@@ -7,6 +7,7 @@ import { RootState } from '~/types/state';
 export const state = (): RootState => ({
   logged: false,
   myId: 0,
+  now: 0,
 });
 
 export const getters: GetterTree<RootState, RootState> = {};
@@ -21,10 +22,14 @@ export const mutations: MutationTree<RootState> = {
   setMyId(state, myId: number) {
     state.myId = myId;
   },
+  setNow(state, now) {
+    state.now = now;
+  },
 };
 
 interface Actions<S, R> extends ActionTree<S, R> {
   nuxtServerInit(actionContext: ActionContext<S, R>, appContext: Context): void;
+  nuxtClientInit(actionContext: ActionContext<S, R>, appContext: Context): void;
 }
 
 export const actions: Actions<RootState, RootState> = {
@@ -34,5 +39,16 @@ export const actions: Actions<RootState, RootState> = {
     const token = cookies.get('apollo-token');
     if (id) commit('setMyId', parseInt(id, 10));
     if (token) commit('login');
+  },
+
+  nuxtClientInit({ dispatch }): void {
+    dispatch('setNow');
+  },
+
+  setNow({ commit }) {
+    commit('setNow', Date.now());
+    setInterval(() => {
+      commit('setNow', Date.now());
+    }, 100);
   },
 };

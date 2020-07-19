@@ -95,3 +95,28 @@ export type SignInMutationVariables = {
 export type SignInMutation = { __typename?: 'Mutation' } & {
   signIn: { __typename?: 'Token' } & Pick<Token, 'ownerId' | 'value'>;
 };
+
+export type GetListenersQueryVariables = {};
+
+export type GetListenersQuery = { __typename?: 'Query' } & {
+  getListeners: Array<
+    { __typename?: 'Listener' } & Pick<
+      Listener,
+      | 'id'
+      | 'icecastId'
+      | 'ip'
+      | 'mount'
+      | 'connectedAt'
+      | 'connectedFor'
+      | 'disconnectedAt'
+      | 'agent'
+    > & {
+        location?: Maybe<
+          { __typename?: 'Location' } & Pick<
+            Location,
+            'country' | 'city' | 'lat' | 'lon'
+          >
+        >;
+      }
+  >;
+};
