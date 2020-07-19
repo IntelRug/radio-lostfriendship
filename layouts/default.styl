@@ -17,22 +17,41 @@
 	height 100%
 	min-height 100%
 
+	&_mobile
+		&_no
+			&_background
+				& ^[0]__body
+					background var(--primary-background)
+
+					+above(size-l)
+						background #0f1014 url('~assets/img/relation_by_simonk0.jpg') no-repeat fixed 50% / cover
+
+				& ^[0]__content
+					padding 0
+
+					+above(size-l)
+						padding 16px 32px 0
+
+				& ^[0]__wrapper
+					background transparent
+
+					+above(size-l)
+						background rgba(0, 0, 0, .5)
+
 	&__wrapper
 		display flex
 		flex-direction column
 		height 100%
+		background rgba(0, 0, 0, .3)
 
 	&__body
 		overflow hidden
 		height 100%
 		min-height 100%
 		color var(--primary-text)
-		font-family 'Roboto', sans-serif
+		font-family 'Open Sans', sans-serif
 		font-size 14px
-		background var(--primary-background)
-
-		+above(size-l)
-			background #0f1014 url('~assets/img/relation_by_simonk0.jpg') no-repeat fixed 50% / cover
+		background #0f1014 url('~assets/img/relation_by_simonk0.jpg') no-repeat fixed 50% / cover
 
 		&_overflow
 			&_hidden
@@ -44,10 +63,6 @@
 		right 0
 		left 0
 		z-index 99
-
-	&__wrapper
-		+above(size-l)
-			background rgba(0, 0, 0, .6)
 
 	&__main
 		overflow hidden
@@ -76,10 +91,8 @@
 		width calc(100% - 50px)
 		height 100%
 		max-height 100%
+		padding 16px 32px 0
 		defaultTransition()
-
-		+above(size-l)
-			padding 16px 32px 0
 
 		&:after
 			content ''

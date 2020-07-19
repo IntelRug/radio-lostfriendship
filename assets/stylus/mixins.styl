@@ -35,7 +35,7 @@ padding-y($padding)
 	padding-top $padding
 	padding-bottom $padding
 
-placeholder($color, $fontSize)
+placeholder($color, $fontSize = 14px)
 	&::-webkit-input-placeholder
 		color $color
 		font-size $fontSize
@@ -63,3 +63,6 @@ below($width)
 
 defaultTransition(prop = all)
 	transition prop trn-speed trn-ease
+
+defaultShadow(color = var(--shadow))
+	box-shadow color 0 1px 3px
