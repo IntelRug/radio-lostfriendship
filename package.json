@@ -20,7 +20,7 @@
     "mc": "node ./scripts/make-component.js"
   },
   "dependencies": {
-    "@nuxt/typescript-runtime": "^0.4.0",
+    "@nuxt/typescript-runtime": "^1.0.0",
     "@nuxtjs/apollo": "^4.0.1-rc.1",
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/svg-sprite": "^0.4.10",
@@ -46,8 +46,8 @@
     "@graphql-codegen/typescript": "^1.13.2",
     "@graphql-codegen/typescript-graphql-files-modules": "^1.13.2",
     "@graphql-codegen/typescript-operations": "^1.13.2",
-    "@nuxt/types": "^0.7.4",
-    "@nuxt/typescript-build": "^0.6.0",
+    "@nuxt/types": "^2.13.3",
+    "@nuxt/typescript-build": "^2.0.0",
     "@nuxtjs/eslint-config-typescript": "^1.0.0",
     "@nuxtjs/eslint-module": "^1.0.0",
     "@nuxtjs/router": "^1.5.0",

@@ -14,7 +14,7 @@ export function createRouter() {
       {
         path: '/',
         name: 'main',
-        redirect: '/geo',
+        // redirect: '/geo',
         component: MainPage,
       },
       {

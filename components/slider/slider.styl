@@ -1,5 +1,7 @@
 .slider
-	display block
+	display flex
+	align-items center
+	width 100%
 	height 16px
 	cursor pointer
 
@@ -7,10 +9,19 @@
 		& ^[0]__seeker
 			opacity 1
 
+	&__time
+		display none
+		flex-shrink 1
+		color var(--primary-text)
+		font-size 13px
+		font-weight 600
+
 	&__box
 		position relative
-		top 6px
-		height 3px
+		flex-grow 1
+		flex-shrink 1
+		height 4px
+		margin 0
 		background rgba(255, 255, 255, .1)
 		transition all .1s ease-out
 
@@ -38,3 +49,12 @@
 			right -7px
 			width 18px
 			height 18px
+
+	&_with
+		&_time
+			& ^[0]
+				&__time
+					display block
+
+				&__box
+					margin 0 12px

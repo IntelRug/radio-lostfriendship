@@ -3,9 +3,11 @@
   <div
     ref="slider"
     class="slider"
+    :class="{ slider_with_time: withTime }"
     @mousedown="onMouseDown"
     @touchstart="onMouseDown"
   >
+    <span class="slider__time">{{ time | toHHMMSS }}</span>
     <div class="slider__box">
       <div
         ref="bg"
@@ -20,24 +22,36 @@
         ></div>
       </div>
     </div>
+    <span class="slider__time">{{ duration | toHHMMSS }}</span>
   </div>
   <!-- end .seek-bar -->
 </template>
 
 <script lang="ts">
 import { Component, Vue, Ref, PropSync, Prop } from 'vue-property-decorator';
+import { toHHMMSS } from '~/tools/filters';
 
 @Component({
   name: 'b-slider',
+  filters: { toHHMMSS },
 })
 export default class Slider extends Vue {
   @PropSync('value', { default: 0 }) valueSynced!: number;
   @Prop({ default: false, type: Boolean }) interactive!: boolean;
+  @Prop({ default: false, type: Boolean }) withTime!: boolean;
   @Ref() private slider!: HTMLElement;
   @Ref() private bg!: HTMLElement;
   @Ref() private timestamp!: HTMLElement;
 
   private pointerDown = false;
+
+  get time(): number {
+    return 50;
+  }
+
+  get duration(): number {
+    return 128;
+  }
 
   mounted() {
     document.addEventListener('mouseup', () => {
