@@ -7,7 +7,10 @@
 
 	&:hover
 		& ^[0]__seeker
-			opacity 1
+			top -5px
+			right -7px
+			width 14px
+			height 14px
 
 	&__time
 		display none
@@ -36,20 +39,13 @@
 
 	&__seeker
 		position absolute
-		top -5px
-		right -7px
-		width 14px
-		height 14px
+		top -3px
+		right -5px
+		width 10px
+		height 10px
 		background-color var(--primary-light)
 		border-radius 50%
-		opacity 0
 		defaultTransition()
-
-		&_active
-			top -7px
-			right -7px
-			width 18px
-			height 18px
 
 	&_with
 		&_time

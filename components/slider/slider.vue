@@ -14,12 +14,7 @@
         class="slider__bg"
         :style="{ width: valueSynced * 100 + '%' }"
       >
-        <div
-          v-if="interactive"
-          ref="seeker"
-          class="slider__seeker"
-          :class="{ 'seek-bar__seeker_active': pointerDown }"
-        ></div>
+        <div v-if="interactive" ref="seeker" class="slider__seeker"></div>
       </div>
     </div>
     <span class="slider__time">{{ duration | toHHMMSS }}</span>
