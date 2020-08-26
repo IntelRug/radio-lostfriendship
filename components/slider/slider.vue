@@ -37,6 +37,7 @@ import { toHHMMSS } from '~/tools/filters';
 })
 export default class Slider extends Vue {
   @PropSync('value', { default: 0 }) valueSynced!: number;
+  @Prop({ default: 0 }) duration!: number;
   @Prop({ default: false, type: Boolean }) interactive!: boolean;
   @Prop({ default: false, type: Boolean }) withTime!: boolean;
   @Ref() private slider!: HTMLElement;
@@ -46,11 +47,7 @@ export default class Slider extends Vue {
   private pointerDown = false;
 
   get time(): number {
-    return 50;
-  }
-
-  get duration(): number {
-    return 128;
+    return this.duration * this.valueSynced;
   }
 
   mounted() {
