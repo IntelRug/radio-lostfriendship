@@ -59,6 +59,7 @@ export default class Select extends Vue {
 
   blur() {
     this.focused = false;
+    this.button.blur();
   }
 
   mousedown(e: MouseEvent) {
