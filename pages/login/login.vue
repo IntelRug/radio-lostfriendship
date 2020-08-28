@@ -28,8 +28,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Mutation, Ref } from 'nuxt-property-decorator';
-import { MutationMethod } from 'vuex';
+import { Component, Vue, Ref } from 'nuxt-property-decorator';
 import BForm from '~/components/form/form.vue';
 import BTextField from '~/components/text-field/text-field.vue';
 import BButton from '~/components/button/button.vue';
@@ -42,9 +41,6 @@ import { ExecutionResult } from '~/types/apollo';
   components: { BButton, BTextField, BForm },
 })
 export default class Login extends Vue {
-  @Mutation setMyId!: MutationMethod;
-  @Mutation login!: MutationMethod;
-
   @Ref('password') passwordField!: BTextField;
 
   errors: string[] = [];
@@ -87,8 +83,8 @@ export default class Login extends Vue {
       await this.$apolloHelpers.onLogin(data.signIn.value, undefined, {
         maxAge: 86400 * 365 * 10,
       });
-      this.setMyId(data.signIn.ownerId);
-      this.login();
+      this.$accessor.auth.SET_USER_ID(data.signIn.ownerId);
+      this.$accessor.auth.SET_LOGGED_IN(true);
       await this.$router.push('/');
     } catch (e) {}
   }

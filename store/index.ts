@@ -10,8 +10,6 @@ import * as auth from '~/store/auth.ts';
 import * as player from '~/store/player.ts';
 
 export const state = () => ({
-  logged: false as boolean,
-  myId: 0 as number,
   now: 0 as number,
 });
 
