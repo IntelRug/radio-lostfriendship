@@ -29,6 +29,7 @@
     "core-js": "2",
     "graphql-tag": "^2.10.3",
     "leaflet": "^1.6.0",
+    "moment": "^2.27.0",
     "nuxt": "^2.0.0",
     "nuxt-i18n": "^6.9.1",
     "nuxt-leaflet": "^0.0.21",
