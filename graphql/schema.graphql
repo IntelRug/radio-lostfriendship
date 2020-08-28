@@ -6,6 +6,9 @@ type Query {
   getHello: String!
   getCurrentUser: User!
   getListeners: [Listener!]!
+  getTracksHistory: [TracksHistoryItem!]!
+  getCurrentPlaying: CurrentPlaying
+  getCalendarEvents: [CalendarEvent!]!
 }
 type User {
   id: Int!
@@ -43,6 +46,38 @@ type Location {
   city: String!
   lat: Float!
   lon: Float!
+}
+type TracksHistoryItem {
+  starts: String!
+  ends: String!
+  history_id: Int!
+  instance_id: Int!
+  track_title: String
+  artist_name: String
+  info_url: String
+  checkbox: String!
+}
+type CurrentPlaying {
+  previous: CurrentPlayingTrack!
+  current: CurrentPlayingTrack!
+  next: CurrentPlayingTrack!
+  listenersCount: Float!
+}
+type CurrentPlayingTrack {
+  id: Int!
+  name: String!
+  title: String!
+  artist: String!
+  startsAt: Float!
+  endsAt: Float!
+  length: Float!
+  hasArtwork: Boolean!
+  type: String!
+}
+type CalendarEvent {
+  summary: String!
+  startsAt: Float!
+  endsAt: Float!
 }
 type Mutation {
   signIn(email: String!, password: String!): Token!

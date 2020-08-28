@@ -1,54 +1,51 @@
-/* eslint-disable no-shadow */
-import { MutationTree, ActionTree, ActionContext, GetterTree } from 'vuex';
-import Cookies from 'universal-cookie';
-import { Context } from '@nuxt/types';
-import { RootState } from '~/types/state';
+import {
+  actionTree,
+  getAccessorType,
+  getterTree,
+  mutationTree,
+} from 'typed-vuex';
 
-export const state = (): RootState => ({
-  logged: false,
-  myId: 0,
-  now: 0,
+import { Context } from '@nuxt/types';
+import * as auth from '~/store/auth.ts';
+import * as player from '~/store/player.ts';
+
+export const state = () => ({
+  logged: false as boolean,
+  myId: 0 as number,
+  now: 0 as number,
 });
 
-export const getters: GetterTree<RootState, RootState> = {};
+export type RootState = ReturnType<typeof state>;
 
-export const mutations: MutationTree<RootState> = {
-  login(state) {
-    state.logged = true;
-  },
-  logout(state) {
-    state.logged = false;
-  },
-  setMyId(state, myId: number) {
-    state.myId = myId;
-  },
-  setNow(state, now) {
-    state.now = now;
-  },
-};
+export const mutations = mutationTree(state, {
+  SET_NOW: (_state, payload: number) => (_state.now = payload),
+});
 
-interface Actions<S, R> extends ActionTree<S, R> {
-  nuxtServerInit(actionContext: ActionContext<S, R>, appContext: Context): void;
-  nuxtClientInit(actionContext: ActionContext<S, R>, appContext: Context): void;
-}
+export const getters = getterTree(state, {});
 
-export const actions: Actions<RootState, RootState> = {
-  nuxtServerInit({ commit }, context) {
-    const cookies = new Cookies(context.req.headers.cookie);
-    const id = cookies.get('id');
-    const token = cookies.get('apollo-token');
-    if (id) commit('setMyId', parseInt(id, 10));
-    if (token) commit('login');
-  },
+export const actions = actionTree(
+  { state, getters, mutations },
+  {
+    async nuxtServerInit({ commit }, context: Context) {
+      await context.app.$accessor.auth.nuxtServerInit(context);
+      await context.app.$accessor.player.nuxtServerInit(context);
+      commit('SET_NOW', Date.now());
+    },
 
-  nuxtClientInit({ dispatch }): void {
-    dispatch('setNow');
+    async nuxtClientInit({ commit }, context) {
+      await context.app.$accessor.player.nuxtClientInit(context);
+      commit('SET_NOW', Date.now());
+      setInterval(() => commit('SET_NOW', Date.now()), 1000);
+    },
   },
+);
 
-  setNow({ commit }) {
-    commit('setNow', Date.now());
-    setInterval(() => {
-      commit('setNow', Date.now());
-    }, 100);
+export const accessorType = getAccessorType({
+  state,
+  actions,
+  mutations,
+  modules: {
+    auth,
+    player,
   },
-};
+});

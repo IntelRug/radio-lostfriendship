@@ -66,12 +66,14 @@ export default {
     '@nuxtjs/dotenv',
     '@nuxtjs/router',
     '@nuxtjs/style-resources',
+    'nuxt-typed-vuex',
   ],
   /*
    ** Nuxt.js modules
    */
   modules: [
     // Doc: https://github.com/nuxt-community/dotenv-module
+    'cookie-universal-nuxt',
     '@nuxtjs/svg-sprite',
     '@nuxtjs/apollo',
     'nuxt-leaflet',
@@ -122,6 +124,7 @@ export default {
         });
       }
     },
+    transpile: [/typed-vuex/],
   },
   svgSprite: {
     input: '~/assets/icons/',

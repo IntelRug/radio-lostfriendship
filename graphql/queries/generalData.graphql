@@ -1,0 +1,43 @@
+query GetGeneralData {
+  getCurrentPlaying {
+    previous {
+      id
+      name
+      title
+      artist
+      startsAt
+      endsAt
+      length
+      hasArtwork
+      type
+    }
+    current {
+      id
+      name
+      title
+      artist
+      startsAt
+      endsAt
+      length
+      hasArtwork
+      type
+    }
+    next {
+      id
+      name
+      title
+      artist
+      startsAt
+      endsAt
+      length
+      hasArtwork
+      type
+    }
+    listenersCount
+  }
+  getCalendarEvents {
+    summary
+    startsAt
+    endsAt
+  }
+}

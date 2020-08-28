@@ -1,4 +1,5 @@
 export type Maybe<T> = T | null;
+export type Exact<T extends { [key: string]: any }> = { [K in keyof T]: T[K] };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -6,6 +7,34 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+};
+
+export type CalendarEvent = {
+  __typename?: 'CalendarEvent';
+  summary: Scalars['String'];
+  startsAt: Scalars['Float'];
+  endsAt: Scalars['Float'];
+};
+
+export type CurrentPlaying = {
+  __typename?: 'CurrentPlaying';
+  previous: CurrentPlayingTrack;
+  current: CurrentPlayingTrack;
+  next: CurrentPlayingTrack;
+  listenersCount: Scalars['Float'];
+};
+
+export type CurrentPlayingTrack = {
+  __typename?: 'CurrentPlayingTrack';
+  id: Scalars['Int'];
+  name: Scalars['String'];
+  title: Scalars['String'];
+  artist: Scalars['String'];
+  startsAt: Scalars['Float'];
+  endsAt: Scalars['Float'];
+  length: Scalars['Float'];
+  hasArtwork: Scalars['Boolean'];
+  type: Scalars['String'];
 };
 
 export type Listener = {
@@ -63,6 +92,9 @@ export type Query = {
   getHello: Scalars['String'];
   getCurrentUser: User;
   getListeners: Array<Listener>;
+  getTracksHistory: Array<TracksHistoryItem>;
+  getCurrentPlaying?: Maybe<CurrentPlaying>;
+  getCalendarEvents: Array<CalendarEvent>;
 };
 
 export type Token = {
@@ -73,6 +105,18 @@ export type Token = {
   createdAt: Scalars['String'];
   expiresIn: Scalars['String'];
   usedAt: Scalars['String'];
+};
+
+export type TracksHistoryItem = {
+  __typename?: 'TracksHistoryItem';
+  starts: Scalars['String'];
+  ends: Scalars['String'];
+  history_id: Scalars['Int'];
+  instance_id: Scalars['Int'];
+  track_title?: Maybe<Scalars['String']>;
+  artist_name?: Maybe<Scalars['String']>;
+  info_url?: Maybe<Scalars['String']>;
+  checkbox: Scalars['String'];
 };
 
 export type User = {
@@ -87,16 +131,70 @@ export type User = {
   background: Picture;
 };
 
-export type SignInMutationVariables = {
+export type SignInMutationVariables = Exact<{
   email: Scalars['String'];
   password: Scalars['String'];
-};
+}>;
 
 export type SignInMutation = { __typename?: 'Mutation' } & {
   signIn: { __typename?: 'Token' } & Pick<Token, 'ownerId' | 'value'>;
 };
 
-export type GetListenersQueryVariables = {};
+export type GetGeneralDataQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetGeneralDataQuery = { __typename?: 'Query' } & {
+  getCurrentPlaying?: Maybe<
+    { __typename?: 'CurrentPlaying' } & Pick<
+      CurrentPlaying,
+      'listenersCount'
+    > & {
+        previous: { __typename?: 'CurrentPlayingTrack' } & Pick<
+          CurrentPlayingTrack,
+          | 'id'
+          | 'name'
+          | 'title'
+          | 'artist'
+          | 'startsAt'
+          | 'endsAt'
+          | 'length'
+          | 'hasArtwork'
+          | 'type'
+        >;
+        current: { __typename?: 'CurrentPlayingTrack' } & Pick<
+          CurrentPlayingTrack,
+          | 'id'
+          | 'name'
+          | 'title'
+          | 'artist'
+          | 'startsAt'
+          | 'endsAt'
+          | 'length'
+          | 'hasArtwork'
+          | 'type'
+        >;
+        next: { __typename?: 'CurrentPlayingTrack' } & Pick<
+          CurrentPlayingTrack,
+          | 'id'
+          | 'name'
+          | 'title'
+          | 'artist'
+          | 'startsAt'
+          | 'endsAt'
+          | 'length'
+          | 'hasArtwork'
+          | 'type'
+        >;
+      }
+  >;
+  getCalendarEvents: Array<
+    { __typename?: 'CalendarEvent' } & Pick<
+      CalendarEvent,
+      'summary' | 'startsAt' | 'endsAt'
+    >
+  >;
+};
+
+export type GetListenersQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetListenersQuery = { __typename?: 'Query' } & {
   getListeners: Array<
