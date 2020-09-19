@@ -23,7 +23,7 @@ export const actions = actionTree(
   {
     nuxtServerInit({ commit }, { app }: Context) {
       const id = app.$cookies.get('user_id');
-      const token = app.$cookies.get('apollo_token');
+      const token = app.$cookies.get('apollo-token');
 
       if (id) commit('SET_USER_ID', parseInt(id, 10));
       if (token) commit('SET_LOGGED_IN', true);
