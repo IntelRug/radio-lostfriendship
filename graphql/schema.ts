@@ -192,6 +192,12 @@ export type GetGeneralDataQuery = { __typename?: 'Query' } & {
       'summary' | 'startsAt' | 'endsAt'
     >
   >;
+  getTracksHistory: Array<
+    { __typename?: 'TracksHistoryItem' } & Pick<
+      TracksHistoryItem,
+      'track_title' | 'artist_name' | 'info_url'
+    >
+  >;
 };
 
 export type GetListenersQueryVariables = Exact<{ [key: string]: never }>;
