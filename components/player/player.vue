@@ -140,17 +140,17 @@ export default class Player extends Vue {
 
   mounted() {
     this.audio.addEventListener('volumechange', () =>
-      this.setVolume(this.audio.volume),
+      this.setVolume(this.getInverseLogarithmicVolume(this.audio.volume)),
     );
     this.audio.addEventListener('pause', () => (this.playing = false));
     this.audio.addEventListener('play', () => (this.playing = true));
-    this.audio.volume = this.volume;
+    this.audio.volume = this.getLogarithmicVolume(this.volume);
     this.audio.muted = this.muted;
   }
 
   @Watch('volume')
   onVolumeChanged(volume: number) {
-    this.audio.volume = volume;
+    this.audio.volume = this.getLogarithmicVolume(volume);
   }
 
   @Watch('muted')
@@ -165,6 +165,15 @@ export default class Player extends Vue {
       await this.$nextTick();
       this.playing = true;
     }
+  }
+
+  getLogarithmicVolume(volume: number): number {
+    const v = Math.min(Math.exp(volume * 6.908) / 1000, 1);
+    return v <= 0.001 ? 0 : v >= 0.99 ? 1 : v;
+  }
+
+  getInverseLogarithmicVolume(volume: number) {
+    return Math.log(volume * 1000) / 6.908;
   }
 
   play() {
