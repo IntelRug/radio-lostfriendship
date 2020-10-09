@@ -5,21 +5,21 @@
     "../server/index.ssr.html",
     "81e4fa5fc3c3da28952483c812fecaaa.svg",
     "LICENSES",
-    "app.052cede.js",
-    "commons/app.b2a3808.js",
+    "app.0dbeb6e.js",
+    "commons/app.ab724bd.js",
     "img/layers-2x.4f0283c.png",
     "img/marker-icon.2273e3d.png",
     "img/relation_by_simonk0.a23a1bd.jpg",
     "lang-en-US.f6f1233.js",
     "lang-ru-RU.6011044.js",
     "runtime.2dd2c82.js",
-    "vendors~app.d3d1595.js"
+    "vendors~app.3a5d2c6.js"
   ],
   "initial": [
     "runtime.2dd2c82.js",
-    "commons/app.b2a3808.js",
-    "vendors~app.d3d1595.js",
-    "app.052cede.js"
+    "commons/app.ab724bd.js",
+    "vendors~app.3a5d2c6.js",
+    "app.0dbeb6e.js"
   ],
   "async": [
     "lang-en-US.f6f1233.js",
@@ -338,10 +338,10 @@
     "f90941f0": [
       5
     ],
-    "303f2e01": [
+    "0517d49a": [
       5
     ],
-    "0517d49a": [
+    "303f2e01": [
       5
     ],
     "3e7504bb": [
@@ -503,7 +503,7 @@
       8,
       2
     ],
-    "64dbaffa": [
+    "16b86f56": [
       4,
       8,
       2
@@ -548,7 +548,7 @@
       8,
       2
     ],
-    "37ed36bc": [
+    "d433b804": [
       4,
       8,
       2
@@ -598,7 +598,7 @@
       8,
       2
     ],
-    "62315d4a": [
+    "c3c1db0a": [
       4,
       8,
       2
@@ -648,7 +648,7 @@
       8,
       2
     ],
-    "061659b3": [
+    "5563ca5a": [
       4,
       8,
       2
@@ -2894,10 +2894,10 @@
   },
   "assetsMapping": {
     "1a3ae26b": [
-      "app.052cede.js"
+      "app.0dbeb6e.js"
     ],
     "085a35c4": [
-      "commons/app.b2a3808.js"
+      "commons/app.ab724bd.js"
     ],
     "c05cf3ce": [
       "lang-en-US.f6f1233.js"
@@ -2909,7 +2909,7 @@
       "runtime.2dd2c82.js"
     ],
     "7ec635d8": [
-      "vendors~app.d3d1595.js"
+      "vendors~app.3a5d2c6.js"
     ]
   }
 }

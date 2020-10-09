@@ -3869,16 +3869,16 @@ var external_nuxt_property_decorator_ = __webpack_require__(1);
 var external_moment_ = __webpack_require__(37);
 var external_moment_default = /*#__PURE__*/__webpack_require__.n(external_moment_);
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./components/player/player.vue?vue&type=template&id=367d2c74&
-var playervue_type_template_id_367d2c74_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"player"},[_vm._ssrNode("<audio hidden=\"hidden\" src=\"/silence.mp3\"></audio> "),_vm._ssrNode("<div class=\"player__header\">","</div>",[_vm._ssrNode("<h1 class=\"player__title\">"+_vm._ssrEscape(_vm._s(_vm.station.name))+"</h1> "),_vm._ssrNode("<span class=\"player__listeners-counter\">","</span>",[_c('svg-icon',{staticClass:"player__icon",attrs:{"name":"people_alt"}}),_vm._ssrNode(_vm._ssrEscape("\n      "+_vm._s(_vm.listenersCount)+"\n    "))],2),_vm._ssrNode(" "),_vm._ssrNode("<a"+(_vm._ssrAttr("href",_vm.station.playlists.m3u))+" class=\"player__download-playlist\">","</a>",[_c('svg-icon',{staticClass:"player__icon",attrs:{"name":"m3u"}})],1)],2),_vm._ssrNode(" "),_vm._ssrNode("<div class=\"player__meta\">","</div>",[_vm._ssrNode(((!_vm.isLiveStream)?("<img"+(_vm._ssrAttr("src",_vm.artwork))+" class=\"player__meta-artwork\">"):"<!---->")+" "),_vm._ssrNode("<div class=\"player__meta-text\">","</div>",[_vm._ssrNode("<div class=\"player__meta-title\">"+_vm._ssrEscape(_vm._s(_vm.track.title))+"</div> <div class=\"player__meta-artist\">"+_vm._ssrEscape("\n        "+_vm._s(_vm.track.artist)+"\n      ")+"</div> "),(!_vm.isLiveStream)?_vm._ssrNode("<div class=\"player__progress\">","</div>",[_c('b-slider',{attrs:{"value":_vm.progress,"duration":_vm.track.duration,"with-time":""}})],1):_vm._e()],2)],2),_vm._ssrNode(" "),_vm._ssrNode("<div class=\"player__controls\">","</div>",[_vm._ssrNode("<div class=\"player__control\">","</div>",[_vm._ssrNode("<button class=\"player__play-button\">","</button>",[(_vm.playing)?_c('svg-icon',{attrs:{"name":"pause_circle_filled"}}):_c('svg-icon',{attrs:{"name":"play_circle_filled"}})],1)]),_vm._ssrNode(" "),_vm._ssrNode("<div class=\"player__control player__quality-selector\">","</div>",[_c('b-select',{attrs:{"items":_vm.station.mounts.map(function (ref) {
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./components/player/player.vue?vue&type=template&id=d3245b66&
+var playervue_type_template_id_d3245b66_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"player"},[_vm._ssrNode("<audio hidden=\"hidden\" src=\"/silence.mp3\"></audio> "),_vm._ssrNode("<div class=\"player__header\">","</div>",[_vm._ssrNode("<h1 class=\"player__title\">"+_vm._ssrEscape(_vm._s(_vm.station.name))+"</h1> "),_vm._ssrNode("<span class=\"player__listeners-counter\">","</span>",[_c('svg-icon',{staticClass:"player__icon",attrs:{"name":"people_alt"}}),_vm._ssrNode(_vm._ssrEscape("\n      "+_vm._s(_vm.listenersCount)+"\n    "))],2),_vm._ssrNode(" "),_vm._ssrNode("<a"+(_vm._ssrAttr("href",_vm.station.playlists.m3u))+" class=\"player__download-playlist\">","</a>",[_c('svg-icon',{staticClass:"player__icon",attrs:{"name":"m3u"}})],1)],2),_vm._ssrNode(" "),_vm._ssrNode("<div class=\"player__meta\">","</div>",[_vm._ssrNode(((!_vm.isLiveStream)?("<img"+(_vm._ssrAttr("src",_vm.artwork))+" class=\"player__meta-artwork\">"):"<!---->")+" "),_vm._ssrNode("<div class=\"player__meta-text\">","</div>",[_vm._ssrNode("<div class=\"player__meta-title\">"+_vm._ssrEscape(_vm._s(_vm.track.title))+"</div> <div class=\"player__meta-artist\">"+_vm._ssrEscape("\n        "+_vm._s(_vm.track.artist)+"\n      ")+"</div> "),(!_vm.isLiveStream)?_vm._ssrNode("<div class=\"player__progress\">","</div>",[_c('b-slider',{attrs:{"value":_vm.progress,"duration":_vm.track.duration,"with-time":""}})],1):_vm._e()],2)],2),_vm._ssrNode(" "),_vm._ssrNode("<div class=\"player__controls\">","</div>",[_vm._ssrNode("<div class=\"player__control\">","</div>",[_vm._ssrNode("<button class=\"player__play-button\">","</button>",[(_vm.playing)?_c('svg-icon',{attrs:{"name":"pause_circle_filled"}}):_c('svg-icon',{attrs:{"name":"play_circle_filled"}})],1)]),_vm._ssrNode(" "),_vm._ssrNode("<div class=\"player__control player__quality-selector\">","</div>",[_c('b-select',{attrs:{"items":_vm.station.mounts.map(function (ref) {
 	var name = ref.name;
 
 	return name;
 }),"value":_vm.streamOrderId},on:{"input":_vm.selectStream}})],1),_vm._ssrNode(" "),_vm._ssrNode("<div class=\"player__control player__volume-slider\">","</div>",[_c('b-volume-slider',{attrs:{"volume":_vm.volume,"muted":_vm.muted},on:{"update:volume":_vm.setVolume,"update:muted":_vm.setMuted}})],1)],2)],2)}
-var playervue_type_template_id_367d2c74_staticRenderFns = []
+var playervue_type_template_id_d3245b66_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./components/player/player.vue?vue&type=template&id=367d2c74&
+// CONCATENATED MODULE: ./components/player/player.vue?vue&type=template&id=d3245b66&
 
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./components/button/button.vue?vue&type=template&id=02ef269a&
 var buttonvue_type_template_id_02ef269a_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c(_vm.tag,{tag:"component",staticClass:"button",class:{
@@ -4554,15 +4554,15 @@ let playervue_type_script_lang_ts_Player = class Player extends external_nuxt_pr
   }
 
   mounted() {
-    this.audio.addEventListener('volumechange', () => this.setVolume(this.audio.volume));
+    this.audio.addEventListener('volumechange', () => this.setVolume(this.getInverseLogarithmicVolume(this.audio.volume)));
     this.audio.addEventListener('pause', () => this.playing = false);
     this.audio.addEventListener('play', () => this.playing = true);
-    this.audio.volume = this.volume;
+    this.audio.volume = this.getLogarithmicVolume(this.volume);
     this.audio.muted = this.muted;
   }
 
   onVolumeChanged(volume) {
-    this.audio.volume = volume;
+    this.audio.volume = this.getLogarithmicVolume(volume);
   }
 
   onMutedChanged(muted) {
@@ -4575,6 +4575,15 @@ let playervue_type_script_lang_ts_Player = class Player extends external_nuxt_pr
       await this.$nextTick();
       this.playing = true;
     }
+  }
+
+  getLogarithmicVolume(volume) {
+    const v = Math.min(Math.exp(volume * 6.908) / 1000, 1);
+    return v <= 0.001 ? 0 : v >= 0.99 ? 1 : v;
+  }
+
+  getInverseLogarithmicVolume(volume) {
+    return Math.log(volume * 1000) / 6.908;
   }
 
   play() {
@@ -4638,8 +4647,8 @@ if (style0.__inject__) style0.__inject__(context)
 
 var player_component = normalizeComponent(
   player_playervue_type_script_lang_ts_,
-  playervue_type_template_id_367d2c74_render,
-  playervue_type_template_id_367d2c74_staticRenderFns,
+  playervue_type_template_id_d3245b66_render,
+  playervue_type_template_id_d3245b66_staticRenderFns,
   false,
   player_injectStyles,
   null,
@@ -5969,12 +5978,12 @@ var nuxt_loading_component = normalizeComponent(
 // EXTERNAL MODULE: ./node_modules/leaflet/dist/leaflet.css
 var leaflet = __webpack_require__(42);
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./layouts/default.vue?vue&type=template&id=6340171c&
-var defaultvue_type_template_id_6340171c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"page__wrapper"},[_vm._ssrNode("<div class=\"page__header\"></div> "),_vm._ssrNode("<div class=\"page__main\">","</div>",[_vm._ssrNode("<div class=\"page__content\">","</div>",[_c('nuxt')],1)])],2)}
-var defaultvue_type_template_id_6340171c_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./layouts/default.vue?vue&type=template&id=9e7794b0&
+var defaultvue_type_template_id_9e7794b0_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"page__wrapper"},[_vm._ssrNode("<div class=\"page__header\"></div> "),_vm._ssrNode("<div class=\"page__main\">","</div>",[_vm._ssrNode("<div class=\"page__content\">","</div>",[_c('nuxt')],1)])],2)}
+var defaultvue_type_template_id_9e7794b0_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./layouts/default.vue?vue&type=template&id=6340171c&
+// CONCATENATED MODULE: ./layouts/default.vue?vue&type=template&id=9e7794b0&
 
 // EXTERNAL MODULE: ./assets/stylus/normalize.styl
 var normalize = __webpack_require__(98);
@@ -6078,6 +6087,12 @@ var defaultvue_type_script_lang_ts_decorate = undefined && undefined.__decorate 
 
 let defaultvue_type_script_lang_ts_Default = class Default extends external_nuxt_property_decorator_["Vue"] {};
 defaultvue_type_script_lang_ts_Default = defaultvue_type_script_lang_ts_decorate([Object(external_nuxt_property_decorator_["Component"])({
+  head() {
+    return {
+      title: this.$accessor.player.station.name || 'Radio'
+    };
+  },
+
   components: {
     BSidebar: sidebar,
     BPlayer: player
@@ -6101,8 +6116,8 @@ if (style0.__inject__) style0.__inject__(context)
 
 var default_component = normalizeComponent(
   layouts_defaultvue_type_script_lang_ts_,
-  defaultvue_type_template_id_6340171c_render,
-  defaultvue_type_template_id_6340171c_staticRenderFns,
+  defaultvue_type_template_id_9e7794b0_render,
+  defaultvue_type_template_id_9e7794b0_staticRenderFns,
   false,
   default_injectStyles,
   null,
@@ -7675,10 +7690,7 @@ async function createApp(ssrContext, config = {}) {
         "href": "\u002Ffavicon.ico"
       }, {
         "rel": "stylesheet",
-        "href": "https:\u002F\u002Ffonts.googleapis.com\u002Fcss2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-      }, {
-        "rel": "stylesheet",
-        "href": "https:\u002F\u002Ffonts.googleapis.com\u002Fcss2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap\" rel=\"stylesheet"
+        "href": "https:\u002F\u002Ffonts.googleapis.com\u002Fcss2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap"
       }],
       "htmlAttrs": {
         "class": ["page page_theme_dark page_theme_blue"]
