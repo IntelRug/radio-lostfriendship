@@ -1,9 +1,13 @@
 {
   "entry": "server.js",
   "files": {
-    "1bf1db4d6531eb3e0b21.js": "1bf1db4d6531eb3e0b21.js",
-    "50093700946a3f849625.js": "50093700946a3f849625.js",
+    "lang-en-US.js": "lang-en-US.js",
+    "lang-ru-RU.js": "lang-ru-RU.js",
     "server.js": "server.js"
   },
-  "maps": {}
+  "maps": {
+    "lang-en-US.js": "lang-en-US.js.map",
+    "lang-ru-RU.js": "lang-ru-RU.js.map",
+    "server.js": "server.js.map"
+  }
 }

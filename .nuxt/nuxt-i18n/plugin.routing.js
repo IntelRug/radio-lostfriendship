@@ -9,10 +9,21 @@ import {
   routesNameSeparator,
   STRATEGIES,
   strategy,
+  trailingSlash,
   vuex
 } from './options'
 
 function localePath (route, locale) {
+  const localizedRoute = localeRoute.call(this, route, locale)
+
+  if (!localizedRoute) {
+    return
+  }
+
+  return localizedRoute.fullPath
+}
+
+function localeRoute (route, locale) {
   // Abort if no route or no locale
   if (!route) {
     return
@@ -45,30 +56,25 @@ function localePath (route, locale) {
   const localizedRoute = Object.assign({}, route)
 
   if (route.path && !route.name) {
+    const isDefaultLocale = locale === defaultLocale
     // if route has a path defined but no name, resolve full route using the path
-    const isPrefixed = (
-      // don't prefix default locale
-      !(locale === defaultLocale && strategy === STRATEGIES.PREFIX_EXCEPT_DEFAULT) &&
+    const isPrefixed =
+        // don't prefix default locale
+        !(isDefaultLocale && [STRATEGIES.PREFIX_EXCEPT_DEFAULT, STRATEGIES.PREFIX_AND_DEFAULT].includes(strategy)) &&
         // no prefix for any language
         !(strategy === STRATEGIES.NO_PREFIX) &&
         // no prefix for different domains
         !i18n.differentDomains
-    )
 
-    const path = (isPrefixed ? `/${locale}${route.path}` : route.path)
-
+    let path = (isPrefixed ? `/${locale}${route.path}` : route.path)
+    path = path.replace(/\/+$/, '') + (trailingSlash ? '/' : '') || '/'
     localizedRoute.path = path
   } else {
-    // otherwise resolve route via the route name
-    // Build localized route options
-    let name = route.name + (strategy === STRATEGIES.NO_PREFIX ? '' : routesNameSeparator + locale)
-
-    // Match route without prefix for default locale
-    if (locale === defaultLocale && strategy === STRATEGIES.PREFIX_AND_DEFAULT) {
-      name += routesNameSeparator + defaultLocaleRouteNameSuffix
+    if (!route.name && !route.path) {
+      localizedRoute.name = this.getRouteBaseName()
     }
 
-    localizedRoute.name = name
+    localizedRoute.name = getLocaleRouteName(localizedRoute.name, locale)
 
     const { params } = localizedRoute
     if (params && params['0'] === undefined && params.pathMatch) {
@@ -76,9 +82,7 @@ function localePath (route, locale) {
     }
   }
 
-  // Resolve localized route
-  const { route: { fullPath } } = this.router.resolve(localizedRoute)
-  return fullPath
+  return this.router.resolve(localizedRoute).route
 }
 
 function switchLocalePath (locale) {
@@ -131,11 +135,22 @@ function switchLocalePath (locale) {
 }
 
 function getRouteBaseName (givenRoute) {
-  const route = givenRoute || this.route
+  const route = givenRoute !== undefined ? givenRoute : this.route
   if (!route.name) {
     return null
   }
   return route.name.split(routesNameSeparator)[0]
+}
+
+function getLocaleRouteName (routeName, locale) {
+  const name = routeName + (strategy === STRATEGIES.NO_PREFIX ? '' : routesNameSeparator + locale)
+
+  // Match route without prefix for default locale
+  if (locale === defaultLocale && strategy === STRATEGIES.PREFIX_AND_DEFAULT) {
+    return name + routesNameSeparator + defaultLocaleRouteNameSuffix
+  }
+
+  return name
 }
 
 const VueInstanceProxy = function (targetFunction) {
@@ -177,6 +192,7 @@ const plugin = {
     Vue.mixin({
       methods: {
         localePath: VueInstanceProxy(localePath),
+        localeRoute: VueInstanceProxy(localeRoute),
         switchLocalePath: VueInstanceProxy(switchLocalePath),
         getRouteBaseName: VueInstanceProxy(getRouteBaseName)
       }
@@ -188,6 +204,7 @@ export default (context) => {
   Vue.use(plugin)
   const { app } = context
   app.localePath = NuxtContextProxy(context, localePath)
+  app.localeRoute = NuxtContextProxy(context, localeRoute)
   app.switchLocalePath = NuxtContextProxy(context, switchLocalePath)
   app.getRouteBaseName = NuxtContextProxy(context, getRouteBaseName)
 }

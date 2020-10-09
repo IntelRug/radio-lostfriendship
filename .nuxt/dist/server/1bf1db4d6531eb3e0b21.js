@@ -1,1 +1,0 @@
-exports.ids=[0],exports.modules={41:function(t,e,o){"use strict";o.r(e),e.default={welcome:"Welcome",main_page:"Main page",about_project:"About",features:"Features",faq:"FAQ",statistics:"Statistics",contacts:"Contacts"}}};

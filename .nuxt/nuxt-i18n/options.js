@@ -15,9 +15,9 @@ export const baseUrl = ''
 export const vuex = {"moduleName":"i18n","syncLocale":false,"syncMessages":false,"syncRouteParams":true}
 export const parsePages = true
 export const pages = {}
-export const encodePaths = true
 export const beforeLanguageSwitch = () => null
 export const onLanguageSwitched = () => null
+export const IS_UNIVERSAL_MODE = true
 export const MODULE_NAME = 'nuxt-i18n'
 export const LOCALE_CODE_KEY = 'code'
 export const LOCALE_ISO_KEY = 'iso'
@@ -26,3 +26,4 @@ export const LOCALE_FILE_KEY = 'file'
 export const STRATEGIES = {"PREFIX":"prefix","PREFIX_EXCEPT_DEFAULT":"prefix_except_default","PREFIX_AND_DEFAULT":"prefix_and_default","NO_PREFIX":"no_prefix"}
 export const COMPONENT_OPTIONS_KEY = 'nuxtI18n'
 export const localeCodes = ["ru","ru"]
+export const trailingSlash = undefined

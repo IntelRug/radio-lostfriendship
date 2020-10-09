@@ -1,34 +1,16 @@
 import middleware from '../middleware'
-import { detectBrowserLanguage, rootRedirect } from './options'
-import { getLocaleFromRoute } from './utils'
 
+/** @type {import('@nuxt/types').Middleware} */
 middleware.nuxti18n = async (context) => {
-  const { app, route, redirect, isHMR } = context
+  const { app, isHMR } = context
 
   if (isHMR) {
     return
   }
 
-  // Handle root path redirect
-  if (route.path === '/' && rootRedirect) {
-    let statusCode = 302
-    let path = rootRedirect
-
-    if (typeof rootRedirect !== 'string') {
-      statusCode = rootRedirect.statusCode
-      path = rootRedirect.path
-    }
-
-    redirect(statusCode, '/' + path, route.query)
-    return
+  const [status, redirectPath, preserveQuery] = await app.i18n.__onNavigate(context.route)
+  if (status && redirectPath) {
+    const query = preserveQuery ? context.route.query : undefined
+    context.redirect(status, redirectPath, query)
   }
-
-  if (detectBrowserLanguage && await app.i18n.__detectBrowserLanguage()) {
-    return
-  }
-
-  const locale = app.i18n.locale || app.i18n.defaultLocale || null
-  const routeLocale = getLocaleFromRoute(route)
-
-  await app.i18n.setLocale(routeLocale || locale)
 }

@@ -17,12 +17,14 @@
     },
     "types": [
       "types/nuxt-leaflet",
+      "types/vuex-accessor",
       "@types/node",
       "@nuxt/types",
       "@nuxtjs/apollo",
       "vue-apollo",
       "vue-cli-plugin-apollo/types",
-      "nuxt-leaflet"
+      "nuxt-leaflet",
+      "cookie-universal-nuxt"
     ]
   },
   "exclude": ["node_modules", ".nuxt", "dist"]
