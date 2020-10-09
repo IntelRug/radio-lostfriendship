@@ -1,5 +1,5 @@
 overwrite: true
-schema: https://api.lostfriendship.net/graphql
+schema: https://intel.pndradio.cf/api/graphql
 documents: ./graphql/**/*.graphql
 generates:
   graphql/schema.ts:

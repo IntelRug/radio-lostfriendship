@@ -5,7 +5,6 @@ schema {
 type Query {
   getHello: String!
   getCurrentUser: User!
-  getListeners: [Listener!]!
   getTracksHistory: [TracksHistoryItem!]!
   getCurrentPlaying: CurrentPlaying
   getCalendarEvents: [CalendarEvent!]!
@@ -30,23 +29,6 @@ type Picture {
   link: String!
   ownerId: Int
   createdAt: String!
-}
-type Listener {
-  id: Int!
-  icecastId: Int!
-  mount: String!
-  ip: String!
-  connectedFor: Int!
-  agent: String
-  connectedAt: Int!
-  disconnectedAt: Int
-  location: Location
-}
-type Location {
-  country: String!
-  city: String!
-  lat: Float!
-  lon: Float!
 }
 type TracksHistoryItem {
   starts: String!

@@ -137,6 +137,7 @@ export const getters = getterTree(state, {
     _state.stationState || {
       id: 0,
       name: '',
+      description: '',
       mounts: [],
       playlists: {
         m3u: '',

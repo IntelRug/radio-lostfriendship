@@ -26,6 +26,13 @@ import BSidebar from '~/components/sidebar/sidebar.vue';
   head() {
     return {
       title: this.$accessor.player.station.name || 'Radio',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$accessor.player.station.description || '',
+        },
+      ],
     };
   },
   components: { BSidebar, BPlayer },

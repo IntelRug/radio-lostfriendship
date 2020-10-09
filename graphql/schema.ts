@@ -38,19 +38,6 @@ export type CurrentPlayingTrack = {
   art: Scalars['String'];
 };
 
-export type Listener = {
-  __typename?: 'Listener';
-  id: Scalars['Int'];
-  icecastId: Scalars['Int'];
-  mount: Scalars['String'];
-  ip: Scalars['String'];
-  connectedFor: Scalars['Int'];
-  agent?: Maybe<Scalars['String']>;
-  connectedAt: Scalars['Int'];
-  disconnectedAt?: Maybe<Scalars['Int']>;
-  location?: Maybe<Location>;
-};
-
 export type Listeners = {
   __typename?: 'Listeners';
   current: Scalars['Float'];
@@ -63,14 +50,6 @@ export type Live = {
   isLive: Scalars['Boolean'];
   streamerName: Scalars['String'];
   broadcastStart: Scalars['Float'];
-};
-
-export type Location = {
-  __typename?: 'Location';
-  country: Scalars['String'];
-  city: Scalars['String'];
-  lat: Scalars['Float'];
-  lon: Scalars['Float'];
 };
 
 export type Mount = {
@@ -124,7 +103,6 @@ export type Query = {
   __typename?: 'Query';
   getHello: Scalars['String'];
   getCurrentUser: User;
-  getListeners: Array<Listener>;
   getTracksHistory: Array<TracksHistoryItem>;
   getCurrentPlaying?: Maybe<CurrentPlaying>;
   getCalendarEvents: Array<CalendarEvent>;
@@ -296,7 +274,10 @@ export type GetGeneralDataQuery = { __typename?: 'Query' } & {
       'track_title' | 'artist_name' | 'info_url' | 'ends' | 'starts'
     >
   >;
-  getStation: { __typename?: 'Station' } & Pick<Station, 'id' | 'name'> & {
+  getStation: { __typename?: 'Station' } & Pick<
+    Station,
+    'id' | 'name' | 'description'
+  > & {
       playlists: { __typename?: 'Playlists' } & Pick<Playlists, 'm3u'>;
       mounts: Array<
         { __typename?: 'Mount' } & Pick<
@@ -305,29 +286,4 @@ export type GetGeneralDataQuery = { __typename?: 'Query' } & {
         >
       >;
     };
-};
-
-export type GetListenersQueryVariables = Exact<{ [key: string]: never }>;
-
-export type GetListenersQuery = { __typename?: 'Query' } & {
-  getListeners: Array<
-    { __typename?: 'Listener' } & Pick<
-      Listener,
-      | 'id'
-      | 'icecastId'
-      | 'ip'
-      | 'mount'
-      | 'connectedAt'
-      | 'connectedFor'
-      | 'disconnectedAt'
-      | 'agent'
-    > & {
-        location?: Maybe<
-          { __typename?: 'Location' } & Pick<
-            Location,
-            'country' | 'city' | 'lat' | 'lon'
-          >
-        >;
-      }
-  >;
 };

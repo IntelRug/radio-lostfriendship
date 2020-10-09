@@ -53,6 +53,7 @@ query GetGeneralData {
   getStation {
     id
     name
+    description
     playlists {
       m3u
     }
