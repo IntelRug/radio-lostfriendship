@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[0],{331:function(t,e,c){"use strict";c.r(e),e.default={welcome:"Welcome",main_page:"Main page",about_project:"About",features:"Features",faq:"FAQ",statistics:"Statistics",contacts:"Contacts"}}}]);
