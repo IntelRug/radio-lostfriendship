@@ -23,6 +23,11 @@ import BPlayer from '~/components/player/player.vue';
 import BSidebar from '~/components/sidebar/sidebar.vue';
 
 @Component({
+  head() {
+    return {
+      title: this.$accessor.player.station.name || 'Radio',
+    };
+  },
   components: { BSidebar, BPlayer },
 })
 export default class Default extends Vue {}
