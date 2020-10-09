@@ -1,13 +1,11 @@
 <template>
   <div class="page__wrapper">
     <div class="page__header" />
-    <!--    <div class="page__player">-->
-    <!--      <b-player />-->
-    <!--    </div>-->
+
     <div class="page__main">
-      <div class="page__sidebar">
-        <b-sidebar />
-      </div>
+      <!--      <div class="page__sidebar">-->
+      <!--        <b-sidebar />-->
+      <!--      </div>-->
       <div class="page__content">
         <nuxt />
       </div>

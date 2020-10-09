@@ -21,20 +21,21 @@ export type CurrentPlaying = {
   previous: CurrentPlayingTrack;
   current: CurrentPlayingTrack;
   next: CurrentPlayingTrack;
+  live: Live;
+  timestamp: Scalars['Float'];
   listenersCount: Scalars['Float'];
 };
 
 export type CurrentPlayingTrack = {
   __typename?: 'CurrentPlayingTrack';
-  id: Scalars['Int'];
+  id: Scalars['String'];
   name: Scalars['String'];
   title: Scalars['String'];
   artist: Scalars['String'];
   startsAt: Scalars['Float'];
   endsAt: Scalars['Float'];
-  length: Scalars['Float'];
-  hasArtwork: Scalars['Boolean'];
-  type: Scalars['String'];
+  duration: Scalars['Float'];
+  art: Scalars['String'];
 };
 
 export type Listener = {
@@ -50,12 +51,38 @@ export type Listener = {
   location?: Maybe<Location>;
 };
 
+export type Listeners = {
+  __typename?: 'Listeners';
+  current: Scalars['Float'];
+  unique: Scalars['Float'];
+  total: Scalars['Float'];
+};
+
+export type Live = {
+  __typename?: 'Live';
+  isLive: Scalars['Boolean'];
+  streamerName: Scalars['String'];
+  broadcastStart: Scalars['Float'];
+};
+
 export type Location = {
   __typename?: 'Location';
   country: Scalars['String'];
   city: Scalars['String'];
   lat: Scalars['Float'];
   lon: Scalars['Float'];
+};
+
+export type Mount = {
+  __typename?: 'Mount';
+  path: Scalars['String'];
+  default: Scalars['Boolean'];
+  id: Scalars['Float'];
+  name: Scalars['String'];
+  url: Scalars['String'];
+  bitrate: Scalars['Float'];
+  format: Scalars['String'];
+  listeners: Listeners;
 };
 
 export type Mutation = {
@@ -87,6 +114,12 @@ export type Picture = {
   createdAt: Scalars['String'];
 };
 
+export type Playlists = {
+  __typename?: 'Playlists';
+  m3u: Scalars['String'];
+  pls: Scalars['String'];
+};
+
 export type Query = {
   __typename?: 'Query';
   getHello: Scalars['String'];
@@ -95,6 +128,21 @@ export type Query = {
   getTracksHistory: Array<TracksHistoryItem>;
   getCurrentPlaying?: Maybe<CurrentPlaying>;
   getCalendarEvents: Array<CalendarEvent>;
+  getStation: Station;
+};
+
+export type Station = {
+  __typename?: 'Station';
+  id: Scalars['Float'];
+  name: Scalars['String'];
+  shortcode: Scalars['String'];
+  description: Scalars['String'];
+  frontend: Scalars['String'];
+  backend: Scalars['String'];
+  listenUrl: Scalars['String'];
+  public: Scalars['Boolean'];
+  playlists: Playlists;
+  mounts: Array<Mount>;
 };
 
 export type Token = {
@@ -140,14 +188,18 @@ export type SignInMutation = { __typename?: 'Mutation' } & {
   signIn: { __typename?: 'Token' } & Pick<Token, 'ownerId' | 'value'>;
 };
 
-export type GetGeneralDataQueryVariables = Exact<{ [key: string]: never }>;
+export type GetCurrentPlayingQueryVariables = Exact<{ [key: string]: never }>;
 
-export type GetGeneralDataQuery = { __typename?: 'Query' } & {
+export type GetCurrentPlayingQuery = { __typename?: 'Query' } & {
   getCurrentPlaying?: Maybe<
     { __typename?: 'CurrentPlaying' } & Pick<
       CurrentPlaying,
-      'listenersCount'
+      'listenersCount' | 'timestamp'
     > & {
+        live: { __typename?: 'Live' } & Pick<
+          Live,
+          'isLive' | 'streamerName' | 'broadcastStart'
+        >;
         previous: { __typename?: 'CurrentPlayingTrack' } & Pick<
           CurrentPlayingTrack,
           | 'id'
@@ -156,9 +208,8 @@ export type GetGeneralDataQuery = { __typename?: 'Query' } & {
           | 'artist'
           | 'startsAt'
           | 'endsAt'
-          | 'length'
-          | 'hasArtwork'
-          | 'type'
+          | 'duration'
+          | 'art'
         >;
         current: { __typename?: 'CurrentPlayingTrack' } & Pick<
           CurrentPlayingTrack,
@@ -168,9 +219,8 @@ export type GetGeneralDataQuery = { __typename?: 'Query' } & {
           | 'artist'
           | 'startsAt'
           | 'endsAt'
-          | 'length'
-          | 'hasArtwork'
-          | 'type'
+          | 'duration'
+          | 'art'
         >;
         next: { __typename?: 'CurrentPlayingTrack' } & Pick<
           CurrentPlayingTrack,
@@ -180,9 +230,57 @@ export type GetGeneralDataQuery = { __typename?: 'Query' } & {
           | 'artist'
           | 'startsAt'
           | 'endsAt'
-          | 'length'
-          | 'hasArtwork'
-          | 'type'
+          | 'duration'
+          | 'art'
+        >;
+      }
+  >;
+};
+
+export type GetGeneralDataQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetGeneralDataQuery = { __typename?: 'Query' } & {
+  getCurrentPlaying?: Maybe<
+    { __typename?: 'CurrentPlaying' } & Pick<
+      CurrentPlaying,
+      'listenersCount' | 'timestamp'
+    > & {
+        live: { __typename?: 'Live' } & Pick<
+          Live,
+          'isLive' | 'streamerName' | 'broadcastStart'
+        >;
+        previous: { __typename?: 'CurrentPlayingTrack' } & Pick<
+          CurrentPlayingTrack,
+          | 'id'
+          | 'name'
+          | 'title'
+          | 'artist'
+          | 'startsAt'
+          | 'endsAt'
+          | 'duration'
+          | 'art'
+        >;
+        current: { __typename?: 'CurrentPlayingTrack' } & Pick<
+          CurrentPlayingTrack,
+          | 'id'
+          | 'name'
+          | 'title'
+          | 'artist'
+          | 'startsAt'
+          | 'endsAt'
+          | 'duration'
+          | 'art'
+        >;
+        next: { __typename?: 'CurrentPlayingTrack' } & Pick<
+          CurrentPlayingTrack,
+          | 'id'
+          | 'name'
+          | 'title'
+          | 'artist'
+          | 'startsAt'
+          | 'endsAt'
+          | 'duration'
+          | 'art'
         >;
       }
   >;
@@ -195,9 +293,18 @@ export type GetGeneralDataQuery = { __typename?: 'Query' } & {
   getTracksHistory: Array<
     { __typename?: 'TracksHistoryItem' } & Pick<
       TracksHistoryItem,
-      'track_title' | 'artist_name' | 'info_url'
+      'track_title' | 'artist_name' | 'info_url' | 'ends' | 'starts'
     >
   >;
+  getStation: { __typename?: 'Station' } & Pick<Station, 'id' | 'name'> & {
+      playlists: { __typename?: 'Playlists' } & Pick<Playlists, 'm3u'>;
+      mounts: Array<
+        { __typename?: 'Mount' } & Pick<
+          Mount,
+          'id' | 'default' | 'path' | 'name' | 'url' | 'bitrate' | 'format'
+        >
+      >;
+    };
 };
 
 export type GetListenersQueryVariables = Exact<{ [key: string]: never }>;

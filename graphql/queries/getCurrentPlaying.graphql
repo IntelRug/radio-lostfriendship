@@ -1,4 +1,4 @@
-query GetGeneralData {
+query GetCurrentPlaying {
   getCurrentPlaying {
     live {
       isLive
@@ -37,33 +37,5 @@ query GetGeneralData {
     }
     listenersCount
     timestamp
-  }
-  getCalendarEvents {
-    summary
-    startsAt
-    endsAt
-  }
-  getTracksHistory {
-    track_title
-    artist_name
-    info_url
-    ends
-    starts
-  }
-  getStation {
-    id
-    name
-    playlists {
-      m3u
-    }
-    mounts {
-      id
-      default
-      path
-      name
-      url
-      bitrate
-      format
-    }
   }
 }

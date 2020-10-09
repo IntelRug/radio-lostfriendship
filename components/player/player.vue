@@ -3,15 +3,12 @@
   <div class="player">
     <audio ref="audio" hidden="hidden" src="/silence.mp3"></audio>
     <div class="player__header">
-      <h1 class="player__title">Radio Lost Friendship</h1>
+      <h1 class="player__title">{{ station.name }}</h1>
       <span class="player__listeners-counter">
         <svg-icon class="player__icon" name="people_alt" />
         {{ listenersCount }}
       </span>
-      <a
-        href="/playlist/LostFriendshipRadio.m3u"
-        class="player__download-playlist"
-      >
+      <a :href="station.playlists.m3u" class="player__download-playlist">
         <svg-icon class="player__icon" name="m3u" />
       </a>
     </div>
@@ -23,7 +20,7 @@
           {{ track.artist }}
         </div>
         <div v-if="!isLiveStream" class="player__progress">
-          <b-slider :value="progress" :duration="track.length" with-time />
+          <b-slider :value="progress" :duration="track.duration" with-time />
         </div>
       </div>
     </div>
@@ -36,8 +33,8 @@
       </div>
       <div class="player__control player__quality-selector">
         <b-select
-          :items="qualities.titles"
-          :value="streamId"
+          :items="station.mounts.map(({ name }) => name)"
+          :value="streamOrderId"
           @input="selectStream"
         />
       </div>
@@ -60,7 +57,11 @@ import BButton from '~/components/button/button.vue';
 import BSlider from '~/components/slider/slider.vue';
 import BVolumeSlider from '~/components/volume-slider/volume-slider.vue';
 import BSelect from '~/components/select/select.vue';
-import { CurrentPlaying, CurrentPlayingTrack } from '~/graphql/schema';
+import {
+  CurrentPlaying,
+  CurrentPlayingTrack,
+  GetGeneralDataQuery,
+} from '~/graphql/schema';
 
 @Component({
   name: 'b-player',
@@ -69,20 +70,26 @@ import { CurrentPlaying, CurrentPlayingTrack } from '~/graphql/schema';
 export default class Player extends Vue {
   @Ref() audio!: HTMLAudioElement;
 
-  qualities = {
-    titles: ['320 kbit/s', '128 kbit/s', '64 kbit/s'],
-    indexes: [320, 128, 64],
-  };
   playing = false;
 
+  get station(): GetGeneralDataQuery['getStation'] {
+    return this.$accessor.player.station;
+  }
+
   get streamId(): number {
-    return this.$accessor.player.streamId - 1;
+    return this.$accessor.player.streamId;
+  }
+
+  get streamOrderId(): number {
+    const index = this.station.mounts.findIndex(
+      // eslint-disable-next-line eqeqeq
+      ({ id }) => this.streamId == id,
+    );
+    return index === -1 ? 0 : index;
   }
 
   get stream(): string {
-    return `https://radio.lostfriendship.net/${this.qualities.indexes[
-      this.streamId
-    ] || 320}`;
+    return this.station.mounts[this.streamOrderId]?.url || '';
   }
 
   get playingData(): CurrentPlaying {
@@ -114,7 +121,7 @@ export default class Player extends Vue {
   }
 
   get isLiveStream(): boolean {
-    return this.track.type === 'livestream';
+    return this.$accessor.player.playingData.live.isLive;
   }
 
   @Watch('playing')
@@ -165,7 +172,7 @@ export default class Player extends Vue {
   }
 
   async selectStream(id: number) {
-    this.$accessor.player.SET_STREAM_ID(id + 1);
+    this.$accessor.player.SET_STREAM_ID(this.station.mounts[id].id);
     if (this.playing) {
       this.playing = false;
       await this.$nextTick();

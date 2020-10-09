@@ -71,10 +71,7 @@ export default class MainPage extends Vue {
   }
 
   get isLive() {
-    return (
-      this.remainingTime === 0 &&
-      this.$accessor.player.track.type === 'livestream'
-    );
+    return this.$accessor.player.playingData.live.isLive;
   }
 
   get summary(): string {

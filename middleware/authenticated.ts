@@ -2,7 +2,7 @@ import { Context } from '@nuxt/types';
 
 export default function({ app, route, redirect }: Context) {
   const blockedForLoggedIn: string[] = ['login'];
-  const unblockedForLoggedOut: string[] = [];
+  const unblockedForLoggedOut: string[] = ['main'];
   if (
     blockedForLoggedIn.includes(route.name || '') &&
     app.$accessor.auth.loggedIn &&
@@ -14,6 +14,6 @@ export default function({ app, route, redirect }: Context) {
     !app.$accessor.auth.loggedIn &&
     app.router
   ) {
-    redirect(302, '/login');
+    redirect(302, '/');
   }
 }

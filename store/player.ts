@@ -7,10 +7,13 @@ import {
   CalendarEvent,
   CurrentPlaying,
   CurrentPlayingTrack,
+  GetCurrentPlayingQuery,
   GetGeneralDataQuery,
+  Live,
   TracksHistoryItem,
 } from '~/graphql/schema';
 import GetGeneralData from '~/graphql/queries/getGeneralData.graphql';
+import GetCurrentPlaying from '~/graphql/queries/getCurrentPlaying.graphql';
 import { RootState } from '~/store/index';
 
 export const namespaced = true;
@@ -19,7 +22,8 @@ export const state = () => ({
   playingDataState: null as CurrentPlaying | null,
   calendarEventsState: [] as CalendarEvent[],
   tracksHistory: [] as TracksHistoryItem[],
-  streamId: 1 as number,
+  stationState: null as GetGeneralDataQuery['getStation'] | null,
+  streamId: 0 as number,
   volume: 0.5 as number,
   muted: false as boolean,
 });
@@ -52,29 +56,43 @@ export const mutations = mutationTree(state, {
   },
 
   SET_MUTED: (_state, payload: boolean) => (_state.muted = payload),
+
+  SET_STATION: (_state, payload: GetGeneralDataQuery['getStation']) =>
+    (_state.stationState = payload || []),
 });
 
 export const getters = getterTree(state, {
   playingData: (_state, _getters): CurrentPlaying =>
     _state.playingDataState || {
+      live: _getters.liveData,
       previous: _getters.playingDataTrack('previous'),
       current: _getters.playingDataTrack('current'),
       next: _getters.playingDataTrack('next'),
+      timestamp: Date.now(),
       listenersCount: 0,
     },
+
+  liveData: (_state): Live => {
+    return (
+      (_state.playingDataState && _state.playingDataState.live) || {
+        isLive: false,
+        streamerName: '',
+        broadcastStart: 0,
+      }
+    );
+  },
 
   playingDataTrack: (_state) => {
     return (name: 'previous' | 'current' | 'next'): CurrentPlayingTrack =>
       (_state.playingDataState && _state.playingDataState[name]) || {
-        id: 0,
+        id: '',
         title: 'Unknown',
         artist: 'Unknown',
         name: 'Unknown - Unknown',
         startsAt: 0,
         endsAt: 0,
-        length: 0,
-        type: 'track',
-        hasArtwork: false,
+        duration: 0,
+        art: '',
       };
   },
 
@@ -86,34 +104,26 @@ export const getters = getterTree(state, {
     _getters,
     _rootState: RootState,
   ): 'next' | 'current' | 'previous' => {
-    if (_getters.playingData.current.type === 'track') {
-      if (_getters.playingData.current.endsAt - _rootState.now <= 0)
-        return 'next';
-      if (_getters.playingData.current.startsAt - _rootState.now > 0)
-        return 'previous';
-    }
+    if (_getters.playingData.current.endsAt - _rootState.now <= 0)
+      return 'next';
+    if (_getters.playingData.current.startsAt - _rootState.now > 0)
+      return 'previous';
     return 'current';
   },
 
   artwork: (_state, _getters): string => {
-    if (_getters.track.hasArtwork) {
-      return `https://radio.lostfriendship.net/artwork/${_getters.track.id}.png`;
-    }
-    return '/img/player/disc.svg';
+    return _getters.track.art || '/img/player/disc.svg';
   },
 
   progress: (_state, _getters, _rootState: RootState): number => {
-    if (
-      _getters.playingData?.current.type === 'track' &&
-      _getters.track.length
-    ) {
+    if (_getters.track.duration) {
       let duration =
         1 -
         (_getters.track.endsAt - _rootState.now) /
-          (_getters.track.length * 1000);
+          (_getters.track.duration * 1000);
       if (duration) {
-        if (duration > _getters.track.length) {
-          duration = _getters.track.length;
+        if (duration > _getters.track.duration) {
+          duration = _getters.track.duration;
         } else if (duration < 0) {
           duration = 0;
         }
@@ -122,6 +132,16 @@ export const getters = getterTree(state, {
     }
     return 0;
   },
+
+  station: (_state, _getters): GetGeneralDataQuery['getStation'] =>
+    _state.stationState || {
+      id: 0,
+      name: '',
+      mounts: [],
+      playlists: {
+        m3u: '',
+      },
+    },
 });
 
 export const actions = actionTree(
@@ -138,12 +158,17 @@ export const actions = actionTree(
       if (streamId)
         commit('SET_STREAM_ID', parseInt(streamId, 10) || state.streamId);
       if (volume) commit('SET_VOLUME', parseFloat(volume) || state.volume);
-      await dispatch('getGeneralData', context);
+      try {
+        await dispatch('getGeneralData', context);
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+      }
     },
 
     nuxtClientInit({ dispatch }, context) {
       setInterval(
-        async () => await dispatch('getGeneralData', context),
+        async () => await dispatch('getCurrentPlaying', context),
         10 * 1000,
       );
     },
@@ -162,11 +187,28 @@ export const actions = actionTree(
       if (errors || !data || !data.getCurrentPlaying) return;
 
       commit('SET_PLAYING_DATA', data.getCurrentPlaying);
+      commit('SET_STATION', data.getStation);
       commit('SET_CALENDAR_EVENTS', data.getCalendarEvents);
       commit(
         'SET_TRACKS_HISTORY',
         data.getTracksHistory as TracksHistoryItem[],
       );
+    },
+
+    async getCurrentPlaying({ commit }, context: Context) {
+      const apollo = context?.app.apolloProvider?.defaultClient;
+      if (!apollo) return;
+
+      const {
+        data,
+        errors,
+      }: ExecutionResult<GetCurrentPlayingQuery> = await apollo.query({
+        query: GetCurrentPlaying,
+      });
+
+      if (errors || !data || !data.getCurrentPlaying) return;
+
+      commit('SET_PLAYING_DATA', data.getCurrentPlaying);
     },
   },
 );
