@@ -3061,7 +3061,7 @@ __webpack_require__.r(__webpack_exports__);
   });
   return {
     link: errorLink,
-    httpEndpoint: "/api/graphql" || false,
+    httpEndpoint: "https://intel.pndradio.cf/api/graphql" || false,
     httpLinkOptions: {
       fetch: (uri, options) => {
         // const lang: string = new Cookies().get('i18n_redirected');
@@ -3307,7 +3307,7 @@ async function setContext(app, context) {
       error: context.error,
       base: '/',
       env: {
-        "GRAPHQL": "/api/graphql"
+        "GRAPHQL": "https://intel.pndradio.cf/api/graphql"
       }
     }; // Only set once
 
