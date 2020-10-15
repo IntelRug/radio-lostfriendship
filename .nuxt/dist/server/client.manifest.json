@@ -5,7 +5,7 @@
     "../server/index.ssr.html",
     "26704cd12759cce1b696edf160088db8.svg",
     "LICENSES",
-    "app.7ad28d1.js",
+    "app.543f9a0.js",
     "commons/app.3f8484b.js",
     "img/layers-2x.4f0283c.png",
     "img/marker-icon.2273e3d.png",
@@ -19,7 +19,7 @@
     "runtime.ab6c2b5.js",
     "commons/app.3f8484b.js",
     "vendors~app.eba810e.js",
-    "app.7ad28d1.js"
+    "app.543f9a0.js"
   ],
   "async": [
     "lang-en-US.3097eb0.js",
@@ -2895,7 +2895,7 @@
   },
   "assetsMapping": {
     "1a3ae26b": [
-      "app.7ad28d1.js"
+      "app.543f9a0.js"
     ],
     "085a35c4": [
       "commons/app.3f8484b.js"

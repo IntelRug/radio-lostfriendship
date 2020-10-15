@@ -1093,7 +1093,7 @@ const state = () => ({
   tracksHistory: [],
   stationState: null,
   streamId: 0,
-  volume: 0.5,
+  volume: 0.9,
   muted: false
 });
 const mutations = Object(typed_vuex__WEBPACK_IMPORTED_MODULE_0__["mutationTree"])(state, {
