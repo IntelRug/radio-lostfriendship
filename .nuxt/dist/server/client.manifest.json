@@ -3,27 +3,27 @@
   "all": [
     "../server/index.spa.html",
     "../server/index.ssr.html",
-    "81e4fa5fc3c3da28952483c812fecaaa.svg",
+    "26704cd12759cce1b696edf160088db8.svg",
     "LICENSES",
-    "app.3931700.js",
-    "commons/app.7ceae72.js",
+    "app.b6d6960.js",
+    "commons/app.45572e4.js",
     "img/layers-2x.4f0283c.png",
     "img/marker-icon.2273e3d.png",
     "img/relation_by_simonk0.a23a1bd.jpg",
-    "lang-en-US.a4345fc.js",
-    "lang-ru-RU.71111de.js",
-    "runtime.c097ec4.js",
-    "vendors~app.f211e12.js"
+    "lang-en-US.3097eb0.js",
+    "lang-ru-RU.a245d6a.js",
+    "runtime.ab6c2b5.js",
+    "vendors~app.84df528.js"
   ],
   "initial": [
-    "runtime.c097ec4.js",
-    "commons/app.7ceae72.js",
-    "vendors~app.f211e12.js",
-    "app.3931700.js"
+    "runtime.ab6c2b5.js",
+    "commons/app.45572e4.js",
+    "vendors~app.84df528.js",
+    "app.b6d6960.js"
   ],
   "async": [
-    "lang-en-US.a4345fc.js",
-    "lang-ru-RU.71111de.js"
+    "lang-en-US.3097eb0.js",
+    "lang-ru-RU.a245d6a.js"
   ],
   "modules": {
     "11029179": [
@@ -156,12 +156,12 @@
       6,
       7
     ],
-    "2be0643a": [
+    "8e3db964": [
       12,
       6,
       7
     ],
-    "8e3db964": [
+    "2be0643a": [
       12,
       6,
       7
@@ -289,13 +289,13 @@
     "6d63beb4": [
       5
     ],
+    "4291bfa3": [
+      5
+    ],
     "69e9a9bc": [
       12,
       6,
       7
-    ],
-    "4291bfa3": [
-      5
     ],
     "2d3fdd8a": [
       12,
@@ -353,6 +353,9 @@
       7
     ],
     "04f87b90": [
+      5
+    ],
+    "71c425ef": [
       5
     ],
     "31a23a54": [
@@ -508,7 +511,7 @@
       8,
       2
     ],
-    "ce60046a": [
+    "9ef46c3e": [
       4,
       8,
       2
@@ -543,7 +546,7 @@
       8,
       2
     ],
-    "17fdb273": [
+    "2fb37e89": [
       4,
       8,
       2
@@ -603,6 +606,11 @@
       8,
       2
     ],
+    "01671de2": [
+      4,
+      8,
+      2
+    ],
     "02ef3d3c": [
       4,
       8,
@@ -653,12 +661,22 @@
       8,
       2
     ],
-    "6b43c2fd": [
+    "55f92f1e": [
       4,
       8,
       2
     ],
     "b0f1ecba": [
+      4,
+      8,
+      2
+    ],
+    "235aa69b": [
+      4,
+      8,
+      2
+    ],
+    "49317b03": [
       4,
       8,
       2
@@ -723,12 +741,22 @@
       8,
       2
     ],
-    "6dc71b55": [
+    "50f27e6e": [
       4,
       8,
       2
     ],
     "1cb1ccdc": [
+      4,
+      8,
+      2
+    ],
+    "5f4b9af3": [
+      4,
+      8,
+      2
+    ],
+    "342f9872": [
       4,
       8,
       2
@@ -896,9 +924,6 @@
       5
     ],
     "1eaed060": [
-      5
-    ],
-    "71c425ef": [
       5
     ],
     "74875b84": [
@@ -1086,6 +1111,11 @@
       2
     ],
     "6fad350a": [
+      4,
+      8,
+      2
+    ],
+    "2c7b722c": [
       4,
       8,
       2
@@ -2333,6 +2363,22 @@
       8,
       2
     ],
+    "aaa4ddf8": [
+      5
+    ],
+    "7c90ead1": [
+      5
+    ],
+    "70af53fa": [
+      4,
+      8,
+      2
+    ],
+    "bb60a81c": [
+      4,
+      8,
+      2
+    ],
     "7b3c37ee": [
       4,
       8,
@@ -2849,22 +2895,22 @@
   },
   "assetsMapping": {
     "1a3ae26b": [
-      "app.3931700.js"
+      "app.b6d6960.js"
     ],
     "085a35c4": [
-      "commons/app.7ceae72.js"
+      "commons/app.45572e4.js"
     ],
     "c05cf3ce": [
-      "lang-en-US.a4345fc.js"
+      "lang-en-US.3097eb0.js"
     ],
     "bee83438": [
-      "lang-ru-RU.71111de.js"
+      "lang-ru-RU.a245d6a.js"
     ],
     "6fca0322": [
-      "runtime.c097ec4.js"
+      "runtime.ab6c2b5.js"
     ],
     "7ec635d8": [
-      "vendors~app.f211e12.js"
+      "vendors~app.84df528.js"
     ]
   }
 }
