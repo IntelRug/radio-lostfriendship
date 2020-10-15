@@ -53,7 +53,15 @@ export default class MainPage extends Vue {
   }
 
   get event(): CalendarEvent | null {
-    return this.events[0];
+    if (!this.isLive) {
+      return this.events.find((e) => e.endsAt >= Date.now()) || null;
+    }
+    const index = this.events.reduce<number>((acc, event, i) => {
+      if (this.events[acc].endsAt - Date.now() > event.endsAt - Date.now())
+        return i;
+      return acc;
+    }, 0);
+    return this.events[index];
   }
 
   get lessThan10Hours(): boolean {
