@@ -67,7 +67,7 @@ async function createApp(ssrContext, config = {}) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"title":"radio.lostfriendship.net","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"Radio Lost Friendship"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"stylesheet","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap"}],"htmlAttrs":{"class":["page page_theme_dark page_theme_blue"]},"bodyAttrs":{"class":["page__body grid grid_type_default"]},"style":[],"script":[]},
+    head: {"title":"radio.lostfriendship.net","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"Radio Lost Friendship"}],"link":[{"rel":"icon","type":"image\u002Fpng","href":"\u002Flogo.png"},{"rel":"stylesheet","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap"}],"htmlAttrs":{"class":["page page_theme_dark page_theme_blue"]},"bodyAttrs":{"class":["page__body grid grid_type_default"]},"style":[],"script":[]},
 
     store,
     router,
