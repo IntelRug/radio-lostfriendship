@@ -3731,12 +3731,12 @@ var external_vue_no_ssr_default = /*#__PURE__*/__webpack_require__.n(external_vu
 var external_vue_router_ = __webpack_require__(36);
 var external_vue_router_default = /*#__PURE__*/__webpack_require__.n(external_vue_router_);
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./pages/main/main.vue?vue&type=template&id=7de4a9fe&
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./pages/main/main.vue?vue&type=template&id=58e4fd4d&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"main"},[_vm._ssrNode("<div class=\"main__player\">","</div>",[(_vm.event)?_c('b-tile',{staticClass:"tile_padding_small tile_borders_top main__row"},[(_vm.isLive)?_c('a',{staticClass:"main__announcement",attrs:{"href":"#"}},[_c('span',[_vm._v("В эфире")]),_vm._v("\n        – "+_vm._s(_vm.summary)+"\n      ")]):_c('a',{staticClass:"main__announcement",attrs:{"href":"#"}},[_c('span',[_vm._v(_vm._s(_vm.date))]),_vm._v(" в "),_c('span',[_vm._v(_vm._s(_vm.time))]),_vm._v(" "),(_vm.lessThan10Hours)?_c('i',[_vm._v("\n          (через "+_vm._s(_vm._f("toRemainingTime")(_vm.remainingTime))+")\n        ")]):_vm._e(),_vm._v("\n        – "+_vm._s(_vm.summary)+"\n      ")])]):_vm._e(),_vm._ssrNode(" "),_c('b-tile',{staticClass:"tile_padding_medium main__row",class:[{ tile_borders_top: !_vm.event }]},[_c('b-player')],1),_vm._ssrNode(" "),_c('b-tile',{staticClass:" main__row"},[_c('b-chat')],1),_vm._ssrNode(" "),_c('b-tile',{staticClass:"tile_padding_small tile_borders_bottom main__row"},[_c('b-player-buttons')],1)],2)])}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./pages/main/main.vue?vue&type=template&id=7de4a9fe&
+// CONCATENATED MODULE: ./pages/main/main.vue?vue&type=template&id=58e4fd4d&
 
 // EXTERNAL MODULE: external "nuxt-property-decorator"
 var external_nuxt_property_decorator_ = __webpack_require__(1);
@@ -4897,7 +4897,15 @@ let mainvue_type_script_lang_ts_MainPage = class MainPage extends external_nuxt_
   }
 
   get event() {
-    return this.events[0];
+    if (!this.isLive) {
+      return this.events.find(e => e.endsAt >= Date.now()) || null;
+    }
+
+    const index = this.events.reduce((acc, event, i) => {
+      if (this.events[acc].endsAt - Date.now() > event.endsAt - Date.now()) return i;
+      return acc;
+    }, 0);
+    return this.events[index];
   }
 
   get lessThan10Hours() {

@@ -5,21 +5,21 @@
     "../server/index.ssr.html",
     "26704cd12759cce1b696edf160088db8.svg",
     "LICENSES",
-    "app.543f9a0.js",
-    "commons/app.3f8484b.js",
+    "app.55317f9.js",
+    "commons/app.fe13d55.js",
     "img/layers-2x.4f0283c.png",
     "img/marker-icon.2273e3d.png",
     "img/relation_by_simonk0.a23a1bd.jpg",
     "lang-en-US.3097eb0.js",
     "lang-ru-RU.a245d6a.js",
     "runtime.ab6c2b5.js",
-    "vendors~app.eba810e.js"
+    "vendors~app.465093d.js"
   ],
   "initial": [
     "runtime.ab6c2b5.js",
-    "commons/app.3f8484b.js",
-    "vendors~app.eba810e.js",
-    "app.543f9a0.js"
+    "commons/app.fe13d55.js",
+    "vendors~app.465093d.js",
+    "app.55317f9.js"
   ],
   "async": [
     "lang-en-US.3097eb0.js",
@@ -511,7 +511,7 @@
       8,
       2
     ],
-    "b09367fc": [
+    "b65a0556": [
       4,
       8,
       2
@@ -546,7 +546,7 @@
       8,
       2
     ],
-    "26e400aa": [
+    "2400b1fd": [
       4,
       8,
       2
@@ -962,6 +962,9 @@
     "14cac51c": [
       5
     ],
+    "6a6d9065": [
+      5
+    ],
     "5f0349b6": [
       12,
       6,
@@ -995,9 +998,6 @@
       5
     ],
     "bf3dbebe": [
-      5
-    ],
-    "6a6d9065": [
       5
     ],
     "1e739296": [
@@ -1387,6 +1387,9 @@
       5
     ],
     "272d1ec4": [
+      5
+    ],
+    "f426324c": [
       5
     ],
     "526221f0": [
@@ -2024,9 +2027,6 @@
       6,
       7
     ],
-    "f426324c": [
-      5
-    ],
     "7ef3e65e": [
       5
     ],
@@ -2234,6 +2234,12 @@
     "2bf14999": [
       5
     ],
+    "7636b8b5": [
+      5
+    ],
+    "0a8acac3": [
+      5
+    ],
     "4efd867e": [
       12,
       6,
@@ -2248,12 +2254,6 @@
       2
     ],
     "309d5700": [
-      5
-    ],
-    "7636b8b5": [
-      5
-    ],
-    "0a8acac3": [
       5
     ],
     "8e67188c": [
@@ -2895,10 +2895,10 @@
   },
   "assetsMapping": {
     "1a3ae26b": [
-      "app.543f9a0.js"
+      "app.55317f9.js"
     ],
     "085a35c4": [
-      "commons/app.3f8484b.js"
+      "commons/app.fe13d55.js"
     ],
     "c05cf3ce": [
       "lang-en-US.3097eb0.js"
@@ -2910,7 +2910,7 @@
       "runtime.ab6c2b5.js"
     ],
     "7ec635d8": [
-      "vendors~app.eba810e.js"
+      "vendors~app.465093d.js"
     ]
   }
 }
