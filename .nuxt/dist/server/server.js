@@ -1144,8 +1144,11 @@ const getters = Object(typed_vuex__WEBPACK_IMPORTED_MODULE_0__["getterTree"])(st
   },
   track: (_state, _getters) => _getters.playingDataTrack(_getters.trackType),
   trackType: (_state, _getters, _rootState) => {
-    if (_getters.playingData.current.endsAt - _rootState.now <= 0) return 'next';
-    if (_getters.playingData.current.startsAt - _rootState.now > 0) return 'previous';
+    if (!_getters.liveData.isLive) {
+      if (_getters.playingData.current.endsAt - _rootState.now <= 0) return 'next';
+      if (_getters.playingData.current.startsAt - _rootState.now > 0) return 'previous';
+    }
+
     return 'current';
   },
   artwork: (_state, _getters) => {
@@ -3728,12 +3731,12 @@ var external_vue_no_ssr_default = /*#__PURE__*/__webpack_require__.n(external_vu
 var external_vue_router_ = __webpack_require__(36);
 var external_vue_router_default = /*#__PURE__*/__webpack_require__.n(external_vue_router_);
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./pages/main/main.vue?vue&type=template&id=31508542&
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./pages/main/main.vue?vue&type=template&id=7de4a9fe&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"main"},[_vm._ssrNode("<div class=\"main__player\">","</div>",[(_vm.event)?_c('b-tile',{staticClass:"tile_padding_small tile_borders_top main__row"},[(_vm.isLive)?_c('a',{staticClass:"main__announcement",attrs:{"href":"#"}},[_c('span',[_vm._v("В эфире")]),_vm._v("\n        – "+_vm._s(_vm.summary)+"\n      ")]):_c('a',{staticClass:"main__announcement",attrs:{"href":"#"}},[_c('span',[_vm._v(_vm._s(_vm.date))]),_vm._v(" в "),_c('span',[_vm._v(_vm._s(_vm.time))]),_vm._v(" "),(_vm.lessThan10Hours)?_c('i',[_vm._v("\n          (через "+_vm._s(_vm._f("toRemainingTime")(_vm.remainingTime))+")\n        ")]):_vm._e(),_vm._v("\n        – "+_vm._s(_vm.summary)+"\n      ")])]):_vm._e(),_vm._ssrNode(" "),_c('b-tile',{staticClass:"tile_padding_medium main__row",class:[{ tile_borders_top: !_vm.event }]},[_c('b-player')],1),_vm._ssrNode(" "),_c('b-tile',{staticClass:" main__row"},[_c('b-chat')],1),_vm._ssrNode(" "),_c('b-tile',{staticClass:"tile_padding_small tile_borders_bottom main__row"},[_c('b-player-buttons')],1)],2)])}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./pages/main/main.vue?vue&type=template&id=31508542&
+// CONCATENATED MODULE: ./pages/main/main.vue?vue&type=template&id=7de4a9fe&
 
 // EXTERNAL MODULE: external "nuxt-property-decorator"
 var external_nuxt_property_decorator_ = __webpack_require__(1);
@@ -3742,16 +3745,16 @@ var external_nuxt_property_decorator_ = __webpack_require__(1);
 var external_moment_ = __webpack_require__(37);
 var external_moment_default = /*#__PURE__*/__webpack_require__.n(external_moment_);
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./components/player/player.vue?vue&type=template&id=d3245b66&
-var playervue_type_template_id_d3245b66_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"player"},[_vm._ssrNode("<audio hidden=\"hidden\" src=\"/silence.mp3\"></audio> "),_vm._ssrNode("<div class=\"player__header\">","</div>",[_vm._ssrNode("<h1 class=\"player__title\">"+_vm._ssrEscape(_vm._s(_vm.station.name))+"</h1> "),_vm._ssrNode("<span class=\"player__listeners-counter\">","</span>",[_c('svg-icon',{staticClass:"player__icon",attrs:{"name":"people_alt"}}),_vm._ssrNode(_vm._ssrEscape("\n      "+_vm._s(_vm.listenersCount)+"\n    "))],2),_vm._ssrNode(" "),_vm._ssrNode("<a"+(_vm._ssrAttr("href",_vm.station.playlists.m3u))+" class=\"player__download-playlist\">","</a>",[_c('svg-icon',{staticClass:"player__icon",attrs:{"name":"m3u"}})],1)],2),_vm._ssrNode(" "),_vm._ssrNode("<div class=\"player__meta\">","</div>",[_vm._ssrNode(((!_vm.isLiveStream)?("<img"+(_vm._ssrAttr("src",_vm.artwork))+" class=\"player__meta-artwork\">"):"<!---->")+" "),_vm._ssrNode("<div class=\"player__meta-text\">","</div>",[_vm._ssrNode("<div class=\"player__meta-title\">"+_vm._ssrEscape(_vm._s(_vm.track.title))+"</div> <div class=\"player__meta-artist\">"+_vm._ssrEscape("\n        "+_vm._s(_vm.track.artist)+"\n      ")+"</div> "),(!_vm.isLiveStream)?_vm._ssrNode("<div class=\"player__progress\">","</div>",[_c('b-slider',{attrs:{"value":_vm.progress,"duration":_vm.track.duration,"with-time":""}})],1):_vm._e()],2)],2),_vm._ssrNode(" "),_vm._ssrNode("<div class=\"player__controls\">","</div>",[_vm._ssrNode("<div class=\"player__control\">","</div>",[_vm._ssrNode("<button class=\"player__play-button\">","</button>",[(_vm.playing)?_c('svg-icon',{attrs:{"name":"pause_circle_filled"}}):_c('svg-icon',{attrs:{"name":"play_circle_filled"}})],1)]),_vm._ssrNode(" "),_vm._ssrNode("<div class=\"player__control player__quality-selector\">","</div>",[_c('b-select',{attrs:{"items":_vm.station.mounts.map(function (ref) {
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./components/player/player.vue?vue&type=template&id=89bf0d10&
+var playervue_type_template_id_89bf0d10_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"player"},[_vm._ssrNode("<audio hidden=\"hidden\" src=\"/silence.mp3\"></audio> "),_vm._ssrNode("<div class=\"player__header\">","</div>",[_vm._ssrNode("<h1 class=\"player__title\">"+_vm._ssrEscape(_vm._s(_vm.station.name))+"</h1> "),_vm._ssrNode("<span class=\"player__listeners-counter\">","</span>",[_c('svg-icon',{staticClass:"player__icon",attrs:{"name":"people_alt"}}),_vm._ssrNode(_vm._ssrEscape("\n      "+_vm._s(_vm.listenersCount)+"\n    "))],2),_vm._ssrNode(" "),_vm._ssrNode("<a"+(_vm._ssrAttr("href",_vm.station.playlists.m3u))+" class=\"player__download-playlist\">","</a>",[_c('svg-icon',{staticClass:"player__icon",attrs:{"name":"m3u"}})],1)],2),_vm._ssrNode(" "),_vm._ssrNode("<div class=\"player__meta\">","</div>",[_vm._ssrNode(((!_vm.isLiveStream)?("<img"+(_vm._ssrAttr("src",_vm.artwork))+" class=\"player__meta-artwork\">"):"<!---->")+" "),_vm._ssrNode("<div class=\"player__meta-text\">","</div>",[_vm._ssrNode("<div class=\"player__meta-title\">"+_vm._ssrEscape(_vm._s(_vm.title))+"</div> <div class=\"player__meta-artist\">"+_vm._ssrEscape("\n        "+_vm._s(_vm.artist)+"\n      ")+"</div> "),(!_vm.isLiveStream)?_vm._ssrNode("<div class=\"player__progress\">","</div>",[_c('b-slider',{attrs:{"value":_vm.progress,"duration":_vm.track.duration,"with-time":""}})],1):_vm._e()],2)],2),_vm._ssrNode(" "),_vm._ssrNode("<div class=\"player__controls\">","</div>",[_vm._ssrNode("<div class=\"player__control\">","</div>",[_vm._ssrNode("<button class=\"player__play-button\">","</button>",[(_vm.playing)?_c('svg-icon',{attrs:{"name":"pause_circle_filled"}}):_c('svg-icon',{attrs:{"name":"play_circle_filled"}})],1)]),_vm._ssrNode(" "),_vm._ssrNode("<div class=\"player__control player__quality-selector\">","</div>",[_c('b-select',{attrs:{"items":_vm.station.mounts.map(function (ref) {
 	var name = ref.name;
 
 	return name;
 }),"value":_vm.streamOrderId},on:{"input":_vm.selectStream}})],1),_vm._ssrNode(" "),_vm._ssrNode("<div class=\"player__control player__volume-slider\">","</div>",[_c('b-volume-slider',{attrs:{"volume":_vm.volume,"muted":_vm.muted},on:{"update:volume":_vm.setVolume,"update:muted":_vm.setMuted}})],1)],2)],2)}
-var playervue_type_template_id_d3245b66_staticRenderFns = []
+var playervue_type_template_id_89bf0d10_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./components/player/player.vue?vue&type=template&id=d3245b66&
+// CONCATENATED MODULE: ./components/player/player.vue?vue&type=template&id=89bf0d10&
 
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./components/button/button.vue?vue&type=template&id=02ef269a&
 var buttonvue_type_template_id_02ef269a_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c(_vm.tag,{tag:"component",staticClass:"button",class:{
@@ -4362,6 +4365,36 @@ let playervue_type_script_lang_ts_Player = class Player extends external_nuxt_pr
     return this.$accessor.player.station;
   }
 
+  get title() {
+    if (!this.track.title || !this.track.artist) {
+      return this.name.title;
+    }
+
+    return this.track.title;
+  }
+
+  get artist() {
+    if (!this.track.title || !this.track.artist) {
+      return this.name.artist;
+    }
+
+    return this.track.artist;
+  }
+
+  get name() {
+    const array = this.track.name.split(' - ');
+    if (array.length < 2) return {
+      title: 'Unknown',
+      artist: 'Unknown'
+    };
+    const artist = array.splice(0, 1).join(' - ');
+    const title = array.join(' - ');
+    return {
+      title,
+      artist
+    };
+  }
+
   get streamId() {
     return this.$accessor.player.streamId;
   }
@@ -4520,8 +4553,8 @@ if (style0.__inject__) style0.__inject__(context)
 
 var player_component = normalizeComponent(
   player_playervue_type_script_lang_ts_,
-  playervue_type_template_id_d3245b66_render,
-  playervue_type_template_id_d3245b66_staticRenderFns,
+  playervue_type_template_id_89bf0d10_render,
+  playervue_type_template_id_89bf0d10_staticRenderFns,
   false,
   player_injectStyles,
   null,
@@ -4787,12 +4820,12 @@ var player_buttons_component = normalizeComponent(
 )
 
 /* harmony default export */ var player_buttons = (player_buttons_component.exports);
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./components/chat/chat.vue?vue&type=template&id=596cc198&
-var chatvue_type_template_id_596cc198_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"chat"},[_vm._ssrNode("<a href class=\"chat__link\">","</a>",[_c('svg-icon',{attrs:{"name":"open_in_new"}})],1),_vm._ssrNode(" <iframe"+(_vm._ssrAttr("src",_vm.link))+" frameborder=\"0\" class=\"chat__iframe\"></iframe>")],2)}
-var chatvue_type_template_id_596cc198_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./components/chat/chat.vue?vue&type=template&id=4ca05fbc&
+var chatvue_type_template_id_4ca05fbc_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"chat"},[_vm._ssrNode("<a"+(_vm._ssrAttr("href",_vm.link))+" class=\"chat__link\">","</a>",[_c('svg-icon',{attrs:{"name":"open_in_new"}})],1),_vm._ssrNode(" <iframe"+(_vm._ssrAttr("src",_vm.link))+" frameborder=\"0\" class=\"chat__iframe\"></iframe>")],2)}
+var chatvue_type_template_id_4ca05fbc_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./components/chat/chat.vue?vue&type=template&id=596cc198&
+// CONCATENATED MODULE: ./components/chat/chat.vue?vue&type=template&id=4ca05fbc&
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib??ref--12-0!./node_modules/ts-loader??ref--12-1!./node_modules/vue-loader/lib??vue-loader-options!./components/chat/chat.vue?vue&type=script&lang=ts&
 var chatvue_type_script_lang_ts_decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
@@ -4832,8 +4865,8 @@ if (style0.__inject__) style0.__inject__(context)
 
 var chat_component = normalizeComponent(
   chat_chatvue_type_script_lang_ts_,
-  chatvue_type_template_id_596cc198_render,
-  chatvue_type_template_id_596cc198_staticRenderFns,
+  chatvue_type_template_id_4ca05fbc_render,
+  chatvue_type_template_id_4ca05fbc_staticRenderFns,
   false,
   chat_injectStyles,
   null,
@@ -4868,7 +4901,7 @@ let mainvue_type_script_lang_ts_MainPage = class MainPage extends external_nuxt_
   }
 
   get lessThan10Hours() {
-    return this.remainingTime < 10 * 60 * 60;
+    return this.remainingTime < 10 * 60 * 60 && this.remainingTime !== 0;
   }
 
   get date() {

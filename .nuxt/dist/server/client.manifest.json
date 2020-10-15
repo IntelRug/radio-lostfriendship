@@ -5,21 +5,21 @@
     "../server/index.ssr.html",
     "26704cd12759cce1b696edf160088db8.svg",
     "LICENSES",
-    "app.0ec32f4.js",
-    "commons/app.45572e4.js",
+    "app.7ad28d1.js",
+    "commons/app.3f8484b.js",
     "img/layers-2x.4f0283c.png",
     "img/marker-icon.2273e3d.png",
     "img/relation_by_simonk0.a23a1bd.jpg",
     "lang-en-US.3097eb0.js",
     "lang-ru-RU.a245d6a.js",
     "runtime.ab6c2b5.js",
-    "vendors~app.84df528.js"
+    "vendors~app.eba810e.js"
   ],
   "initial": [
     "runtime.ab6c2b5.js",
-    "commons/app.45572e4.js",
-    "vendors~app.84df528.js",
-    "app.0ec32f4.js"
+    "commons/app.3f8484b.js",
+    "vendors~app.eba810e.js",
+    "app.7ad28d1.js"
   ],
   "async": [
     "lang-en-US.3097eb0.js",
@@ -335,10 +335,10 @@
     "6f4b2c3e": [
       5
     ],
-    "f90941f0": [
+    "0517d49a": [
       5
     ],
-    "0517d49a": [
+    "f90941f0": [
       5
     ],
     "303f2e01": [
@@ -511,7 +511,7 @@
       8,
       2
     ],
-    "9ef46c3e": [
+    "b09367fc": [
       4,
       8,
       2
@@ -546,7 +546,7 @@
       8,
       2
     ],
-    "2fb37e89": [
+    "26e400aa": [
       4,
       8,
       2
@@ -576,7 +576,7 @@
       8,
       2
     ],
-    "c3c1db0a": [
+    "5c4a52fe": [
       4,
       8,
       2
@@ -631,7 +631,7 @@
       8,
       2
     ],
-    "5563ca5a": [
+    "0909ded9": [
       4,
       8,
       2
@@ -671,7 +671,7 @@
       8,
       2
     ],
-    "235aa69b": [
+    "233cde09": [
       4,
       8,
       2
@@ -751,7 +751,7 @@
       8,
       2
     ],
-    "5f4b9af3": [
+    "5f2dd261": [
       4,
       8,
       2
@@ -926,6 +926,9 @@
     "1eaed060": [
       5
     ],
+    "6453563e": [
+      5
+    ],
     "74875b84": [
       5
     ],
@@ -951,9 +954,6 @@
       5
     ],
     "cbd26410": [
-      5
-    ],
-    "6453563e": [
       5
     ],
     "45e2cf59": [
@@ -2895,10 +2895,10 @@
   },
   "assetsMapping": {
     "1a3ae26b": [
-      "app.0ec32f4.js"
+      "app.7ad28d1.js"
     ],
     "085a35c4": [
-      "commons/app.45572e4.js"
+      "commons/app.3f8484b.js"
     ],
     "c05cf3ce": [
       "lang-en-US.3097eb0.js"
@@ -2910,7 +2910,7 @@
       "runtime.ab6c2b5.js"
     ],
     "7ec635d8": [
-      "vendors~app.84df528.js"
+      "vendors~app.eba810e.js"
     ]
   }
 }
