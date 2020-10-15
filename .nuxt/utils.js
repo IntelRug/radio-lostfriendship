@@ -150,7 +150,7 @@ export async function setContext (app, context) {
       payload: context.payload,
       error: context.error,
       base: '/',
-      env: {"GRAPHQL":"https://intel.pndradio.cf/api/graphql"}
+      env: {"GRAPHQL":"http://91.228.53.186:5501/graphql"}
     }
     // Only set once
     if (!process.static && context.req) {

@@ -2934,7 +2934,7 @@ __webpack_require__.r(__webpack_exports__);
   });
   return {
     link: errorLink,
-    httpEndpoint: "https://intel.pndradio.cf/api/graphql" || false,
+    httpEndpoint: "http://91.228.53.186:5501/graphql" || false,
     httpLinkOptions: {
       fetch: (uri, options) => {
         // const lang: string = new Cookies().get('i18n_redirected');
@@ -3180,7 +3180,7 @@ async function setContext(app, context) {
       error: context.error,
       base: '/',
       env: {
-        "GRAPHQL": "https://intel.pndradio.cf/api/graphql"
+        "GRAPHQL": "http://91.228.53.186:5501/graphql"
       }
     }; // Only set once
 
