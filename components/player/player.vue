@@ -15,9 +15,9 @@
     <div class="player__meta">
       <img v-if="!isLiveStream" :src="artwork" class="player__meta-artwork" />
       <div class="player__meta-text">
-        <div class="player__meta-title">{{ track.title }}</div>
+        <div class="player__meta-title">{{ title }}</div>
         <div class="player__meta-artist">
-          {{ track.artist }}
+          {{ artist }}
         </div>
         <div v-if="!isLiveStream" class="player__progress">
           <b-slider :value="progress" :duration="track.duration" with-time />
@@ -74,6 +74,28 @@ export default class Player extends Vue {
 
   get station(): GetGeneralDataQuery['getStation'] {
     return this.$accessor.player.station;
+  }
+
+  get title(): string {
+    if (!this.track.title || !this.track.artist) {
+      return this.name.title;
+    }
+    return this.track.title;
+  }
+
+  get artist(): string {
+    if (!this.track.title || !this.track.artist) {
+      return this.name.artist;
+    }
+    return this.track.artist;
+  }
+
+  get name(): { title: string; artist: string } {
+    const array = this.track.name.split(' - ');
+    if (array.length < 2) return { title: 'Unknown', artist: 'Unknown' };
+    const artist = array.splice(0, 1).join(' - ');
+    const title = array.join(' - ');
+    return { title, artist };
   }
 
   get streamId(): number {

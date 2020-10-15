@@ -57,7 +57,7 @@ export default class MainPage extends Vue {
   }
 
   get lessThan10Hours(): boolean {
-    return this.remainingTime < 10 * 60 * 60;
+    return this.remainingTime < 10 * 60 * 60 && this.remainingTime !== 0;
   }
 
   get date(): string {

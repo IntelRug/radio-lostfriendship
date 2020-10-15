@@ -104,10 +104,12 @@ export const getters = getterTree(state, {
     _getters,
     _rootState: RootState,
   ): 'next' | 'current' | 'previous' => {
-    if (_getters.playingData.current.endsAt - _rootState.now <= 0)
-      return 'next';
-    if (_getters.playingData.current.startsAt - _rootState.now > 0)
-      return 'previous';
+    if (!_getters.liveData.isLive) {
+      if (_getters.playingData.current.endsAt - _rootState.now <= 0)
+        return 'next';
+      if (_getters.playingData.current.startsAt - _rootState.now > 0)
+        return 'previous';
+    }
     return 'current';
   },
 

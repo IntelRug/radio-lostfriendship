@@ -1,7 +1,7 @@
 <template>
   <!-- begin .chat-->
   <div class="chat">
-    <a href="" class="chat__link">
+    <a :href="link" class="chat__link">
       <svg-icon name="open_in_new" />
     </a>
     <iframe class="chat__iframe" :src="link" frameborder="0" />
