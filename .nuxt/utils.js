@@ -150,7 +150,7 @@ export async function setContext (app, context) {
       payload: context.payload,
       error: context.error,
       base: '/',
-      env: {"GRAPHQL":"http://91.228.53.186:5501/graphql"}
+      env: {"GRAPHQL":"https://radio.lostfriendship.net/api/graphql"}
     }
     // Only set once
     if (!process.static && context.req) {

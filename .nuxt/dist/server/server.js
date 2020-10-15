@@ -2934,7 +2934,7 @@ __webpack_require__.r(__webpack_exports__);
   });
   return {
     link: errorLink,
-    httpEndpoint: "http://91.228.53.186:5501/graphql" || false,
+    httpEndpoint: "https://radio.lostfriendship.net/api/graphql" || false,
     httpLinkOptions: {
       fetch: (uri, options) => {
         // const lang: string = new Cookies().get('i18n_redirected');
@@ -3180,7 +3180,7 @@ async function setContext(app, context) {
       error: context.error,
       base: '/',
       env: {
-        "GRAPHQL": "http://91.228.53.186:5501/graphql"
+        "GRAPHQL": "https://radio.lostfriendship.net/api/graphql"
       }
     }; // Only set once
 
