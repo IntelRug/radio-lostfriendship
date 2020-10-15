@@ -7,6 +7,7 @@ import {
   CalendarEvent,
   CurrentPlaying,
   CurrentPlayingTrack,
+  GetCalendarEventsQuery,
   GetCurrentPlayingQuery,
   GetGeneralDataQuery,
   Live,
@@ -14,6 +15,7 @@ import {
 } from '~/graphql/schema';
 import GetGeneralData from '~/graphql/queries/getGeneralData.graphql';
 import GetCurrentPlaying from '~/graphql/queries/getCurrentPlaying.graphql';
+import GetCalendarEvents from '~/graphql/queries/getCalendarEvents.graphql';
 import { RootState } from '~/store/index';
 
 export const namespaced = true;
@@ -174,6 +176,10 @@ export const actions = actionTree(
         async () => await dispatch('getCurrentPlaying', context),
         10 * 1000,
       );
+      setInterval(
+        async () => await dispatch('getCalendarEvents', context),
+        10 * 60 * 1000,
+      );
     },
 
     async getGeneralData({ commit }, context: Context) {
@@ -196,6 +202,22 @@ export const actions = actionTree(
         'SET_TRACKS_HISTORY',
         data.getTracksHistory as TracksHistoryItem[],
       );
+    },
+
+    async getCalendarEvents({ commit }, context: Context) {
+      const apollo = context?.app.apolloProvider?.defaultClient;
+      if (!apollo) return;
+
+      const {
+        data,
+        errors,
+      }: ExecutionResult<GetCalendarEventsQuery> = await apollo.query({
+        query: GetCalendarEvents,
+      });
+
+      if (errors || !data || !data.getCalendarEvents) return;
+
+      commit('SET_CALENDAR_EVENTS', data.getCalendarEvents);
     },
 
     async getCurrentPlaying({ commit }, context: Context) {

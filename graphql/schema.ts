@@ -166,6 +166,17 @@ export type SignInMutation = { __typename?: 'Mutation' } & {
   signIn: { __typename?: 'Token' } & Pick<Token, 'ownerId' | 'value'>;
 };
 
+export type GetCalendarEventsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetCalendarEventsQuery = { __typename?: 'Query' } & {
+  getCalendarEvents: Array<
+    { __typename?: 'CalendarEvent' } & Pick<
+      CalendarEvent,
+      'summary' | 'startsAt' | 'endsAt'
+    >
+  >;
+};
+
 export type GetCurrentPlayingQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetCurrentPlayingQuery = { __typename?: 'Query' } & {
