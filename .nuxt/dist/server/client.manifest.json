@@ -5,25 +5,25 @@
     "../server/index.ssr.html",
     "26704cd12759cce1b696edf160088db8.svg",
     "LICENSES",
-    "app.55317f9.js",
-    "commons/app.fe13d55.js",
+    "app.e511e5a.js",
+    "commons/app.f3d4905.js",
     "img/layers-2x.4f0283c.png",
     "img/marker-icon.2273e3d.png",
     "img/relation_by_simonk0.a23a1bd.jpg",
-    "lang-en-US.3097eb0.js",
-    "lang-ru-RU.a245d6a.js",
-    "runtime.ab6c2b5.js",
-    "vendors~app.465093d.js"
+    "lang-en-US.f6f1233.js",
+    "lang-ru-RU.6011044.js",
+    "runtime.2dd2c82.js",
+    "vendors~app.4013878.js"
   ],
   "initial": [
-    "runtime.ab6c2b5.js",
-    "commons/app.fe13d55.js",
-    "vendors~app.465093d.js",
-    "app.55317f9.js"
+    "runtime.2dd2c82.js",
+    "commons/app.f3d4905.js",
+    "vendors~app.4013878.js",
+    "app.e511e5a.js"
   ],
   "async": [
-    "lang-en-US.3097eb0.js",
-    "lang-ru-RU.a245d6a.js"
+    "lang-en-US.f6f1233.js",
+    "lang-ru-RU.6011044.js"
   ],
   "modules": {
     "11029179": [
@@ -2068,6 +2068,11 @@
       8,
       2
     ],
+    "64e5d480": [
+      4,
+      8,
+      2
+    ],
     "3a5c4a64": [
       12,
       6,
@@ -2895,22 +2900,22 @@
   },
   "assetsMapping": {
     "1a3ae26b": [
-      "app.55317f9.js"
+      "app.e511e5a.js"
     ],
     "085a35c4": [
-      "commons/app.fe13d55.js"
+      "commons/app.f3d4905.js"
     ],
     "c05cf3ce": [
-      "lang-en-US.3097eb0.js"
+      "lang-en-US.f6f1233.js"
     ],
     "bee83438": [
-      "lang-ru-RU.a245d6a.js"
+      "lang-ru-RU.6011044.js"
     ],
     "6fca0322": [
-      "runtime.ab6c2b5.js"
+      "runtime.2dd2c82.js"
     ],
     "7ec635d8": [
-      "vendors~app.465093d.js"
+      "vendors~app.4013878.js"
     ]
   }
 }
