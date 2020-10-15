@@ -24,7 +24,7 @@ export const state = () => ({
   tracksHistory: [] as TracksHistoryItem[],
   stationState: null as GetGeneralDataQuery['getStation'] | null,
   streamId: 0 as number,
-  volume: 0.5 as number,
+  volume: 0.9 as number,
   muted: false as boolean,
 });
 
