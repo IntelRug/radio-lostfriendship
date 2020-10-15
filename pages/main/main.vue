@@ -23,6 +23,9 @@
       >
         <b-player />
       </b-tile>
+      <b-tile class=" main__row">
+        <b-chat />
+      </b-tile>
       <b-tile class="tile_padding_small tile_borders_bottom main__row">
         <b-player-buttons />
       </b-tile>
@@ -38,9 +41,10 @@ import BTile from '~/components/tile/tile.vue';
 import BPlayerButtons from '~/components/player-buttons/player-buttons.vue';
 import { CalendarEvent } from '~/graphql/schema';
 import { toRemainingTime } from '~/tools/filters';
+import BChat from '~/components/chat/chat.vue';
 
 @Component({
-  components: { BPlayerButtons, BTile, BPlayer },
+  components: { BChat, BPlayerButtons, BTile, BPlayer },
   filters: { toRemainingTime },
 })
 export default class MainPage extends Vue {

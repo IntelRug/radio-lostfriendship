@@ -6,7 +6,7 @@
         История
       </button>
       <button class="player-buttons__button" disabled>
-        Открыть чат
+        Чат
       </button>
       <button class="player-buttons__button" disabled>
         Записи
@@ -45,12 +45,12 @@ export default class PlayerButtons extends Vue {
     { title: 'Записи', href: '#' },
   ];
   links = [
-    { title: 'Discord', icon: 'discord', href: '#' },
-    { title: 'VK', icon: 'vk', href: '#' },
+    { title: 'Discord', icon: 'discord', href: 'https://discord.gg/B7ZhW9R' },
+    { title: 'VK', icon: 'vk', href: 'https://vk.com/public121020047' },
     {
       title: 'YouTube',
       icon: 'youtube',
-      href: '#',
+      href: 'https://www.youtube.com/channel/UC3C7x7G-n17mWqQS3Uk7TfQ',
     },
   ];
   history = false;
